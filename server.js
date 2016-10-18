@@ -1,3 +1,6 @@
+/*
+*/
+
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -8,12 +11,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
-var server = app.listen(7777, function(){
- console.log("Group_2 Express server has started on port 7777");
-});
 
 app.use(express.static('public'));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(session({
@@ -22,5 +21,18 @@ app.use(session({
  saveUninitialized: true
 }));
 
+var auth = require('./router/auth')(app);
+var members = require('./router/members')(app);
+var ap_ep = require('./router/ap_ep')(app);
+var sapi = require('./router/service_api')(app);
+// /*routing */
+app.use('/auth',auth); //로그인/인증관련
+app.use('/members',members); //회원정보 관리
+app.use('/ap_ep',ap_ep); //AP/EP관리
+app.use('/sapi',sapi); //서비스 api
 
-var router = require('./router/main')(app, fs);
+var server = app.listen(7777, function(){
+ console.log("Group_2 Express server has started on port 7777");
+});
+
+//var router = require('./router/main')(app, fs);

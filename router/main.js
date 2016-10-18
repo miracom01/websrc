@@ -4,6 +4,6 @@ module.exports = function(app, fs)
          res.render('index', {
              title: "MY HOMEPAGE",
              length: 5
-         })
+         });
      });
-}
+};
