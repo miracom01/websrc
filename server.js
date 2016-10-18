@@ -8,7 +8,6 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
-
 var server = app.listen(7777, function(){
  console.log("Group_2 Express server has started on port 7777")
 });
