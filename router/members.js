@@ -8,6 +8,10 @@ module.exports = function(app) {
   });
 
   route.get('/newMember',function(req,res) {
+    res.render('new_member_create', {
+        title: "MY HOMEPAGE",
+        length: 5
+    });
   });
 
   return route;
