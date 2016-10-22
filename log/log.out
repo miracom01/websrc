@@ -1,0 +1,35 @@
+[2016/10/13_13:42:48]
+Express server has started on port 7777
+[2016/10/13_14:02:41]
+Thu, 13 Oct 2016 14:02:41 GMT body-parser deprecated undefined extended: provide extended option at server.js:19:20
+Group_2 Express server has started on port 7777
+[2016/10/18_11:55:08]
+[2016/10/20_13:45:22]
+Thu, 20 Oct 2016 13:45:22 GMT body-parser deprecated undefined extended: provide extended option at server.js:18:20
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::7777
+    at Object.exports._errnoException (util.js:1007:11)
+    at exports._exceptionWithHostPort (util.js:1030:20)
+    at Server._listen2 (net.js:1253:14)
+    at listen (net.js:1289:10)
+    at Server.listen (net.js:1385:5)
+    at EventEmitter.listen (/home/ubuntu/group_2/node_modules/express/lib/application.js:617:24)
+    at Object.<anonymous> (/home/ubuntu/group_2/server.js:11:18)
+    at Module._compile (module.js:541:32)
+    at Object.Module._extensions..js (module.js:550:10)
+    at Module.load (module.js:458:32)
+[2016/10/20_13:48:39]
+Thu, 20 Oct 2016 13:48:39 GMT body-parser deprecated undefined extended: provide extended option at server.js:18:20
+Group_2 Express server has started on port 7777
+[2016/10/20_13:50:17]
+Thu, 20 Oct 2016 13:50:17 GMT body-parser deprecated undefined extended: provide extended option at server.js:18:20
+Group_2 Express server has started on port 7777
+[2016/10/22_15:14:16]
+Sat, 22 Oct 2016 15:14:16 GMT body-parser deprecated undefined extended: provide extended option at server.js:18:20
+Group_2 Express server has started on port 7777
+[2016/10/22_15:16:15]
+Sat, 22 Oct 2016 15:16:15 GMT body-parser deprecated undefined extended: provide extended option at server.js:18:20
+Group_2 Express server has started on port 7777
