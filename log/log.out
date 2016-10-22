@@ -3,6 +3,7 @@ Express server has started on port 7777
 [2016/10/13_14:02:41]
 Thu, 13 Oct 2016 14:02:41 GMT body-parser deprecated undefined extended: provide extended option at server.js:19:20
 Group_2 Express server has started on port 7777
+<<<<<<< HEAD
 [2016/10/18_11:55:08]
 [2016/10/20_13:45:22]
 Thu, 20 Oct 2016 13:45:22 GMT body-parser deprecated undefined extended: provide extended option at server.js:18:20
@@ -33,3 +34,5 @@ Group_2 Express server has started on port 7777
 [2016/10/22_15:16:15]
 Sat, 22 Oct 2016 15:16:15 GMT body-parser deprecated undefined extended: provide extended option at server.js:18:20
 Group_2 Express server has started on port 7777
+=======
+>>>>>>> 815a1994b881b84325e123e295609706a6751e5e
