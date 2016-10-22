@@ -2,33 +2,97 @@
 <html lang="en">
 <% include ./header.ejs %>
 <body>
-<div class="container">
-  <h2>Horizontal form</h2>
-  <form class="form-horizontal" method="post" action="/members/newMember">
+<div class="container dotted">
+  <h2 class="underline">Register Member</h2>
+  <br>
+  <form class="form-horizontal">
     <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Email:</label>
-      <div class="col-sm-10">
-        <input type="email" class="form-control" id="email" placeholder="Enter email">
+      <label class="control-label col-sm-3" for="email">User ID : </label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="userid" placeholder="Enter your ID or email-address">
+        <button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search"></span> Validate</button>
       </div>
+
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Password:</label>
-      <div class="col-sm-10">
+      <label class="control-label col-sm-3" for="pwd">Password:</label>
+      <div class="col-sm-9">
         <input type="password" class="form-control" id="pwd" placeholder="Enter password">
       </div>
     </div>
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
+      <label class="control-label col-sm-3" for="email">User Name : </label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="userid" placeholder="Enter your full name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="email">Region : </label>
+      <div id="select_box" class="dropdown col-sm-2">
+        <select style="width:150px">
+          <option value="SL">Seoul</option>
+          <option value="GG">GyoungGi</option>
+          <option value="GW">GangWon</option>
+        </select>
+	    </div>
+	    <div class="dropdown col-sm-2">
+		    <select style="width:150px">
+          <option value="">서울</option>
+          <option value="">경기</option>
+          <option value="">강원</option>
+        </select>
+		  </div>
+		  <div class="dropdown col-sm-4"></div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="email">Sex / Age : </label>
+      <div class="dropdown col-sm-2">
+        <select style="width:150px">
+          <option value="" selected>Select Sex</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+        </select>
+		  </div>
+		  <div class="dropdown col-sm-2" >
+        <select style="width:150px">
+          <option value="" selected>Select Age</option>
+          <option value="0">0 to 9</option>
+          <option value="10">10 to 19</option>
+          <option value="20">20 to 29</option>
+          <option value="30">30 to 39</option>
+          <option value="40">40 to 49</option>
+          <option value="50">50 to 59</option>
+          <option value="60">over 60</option>
+        </select>
+		    <!--<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">select Age&nbsp;&nbsp;&nbsp;<span class="caret"></span></button>
+		    <ul class="dropdown-menu">
+		      <li><a href="#">0 to 9</a></li>
+		      <li><a href="#">10 to 19</a></li>
+		      <li><a href="#">20 to 29</a></li>
+		      <li><a href="#">30 to 39</a></li>
+		      <li><a href="#">40 to 49</a></li>
+		      <li><a href="#">50 to 59</a></li>
+		      <li><a href="#">over 60</a></li>-->
+		    </ul>
+		  </div>
+		  <div class="col-sm-5"></div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
         <div class="checkbox">
           <label><input type="checkbox"> Remember me</label>
         </div>
       </div>
     </div>
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Submit</button>
+      <div class="col-sm-offset-11">
+        <!--<button type="submit" class="btn btn-default">Submit</button>-->
+        <button type="button" class="btn btn-info btn-md"><span class="glyphicon glyphicon-ok"></span> Submit</button>
       </div>
     </div>
+
   </form>
 </div>
 
