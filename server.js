@@ -1,43 +1,90 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var fs = require("fs");
+
+var app = require('./config/mysql/express')();
+//var passport = require('./config/mysql/passport')(app);
 var path = require('path');
+var fs = require("fs");
 var morgan = require('morgan');
 
-// create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'});
 // setup the logger
-app.use(morgan('combined', {stream: accessLogStream}));
+app.use(morgan('debug', {stream: accessLogStream}));
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
+app.use(function (req, res, next) {
+  var isLogin = false;
+  var url = req.originalUrl;
+  if(req.session.user_id) {
+    isLogin = true;
+  }
+  console.log('====================================');
+  console.log( isLogin );
+  console.log('Request URL:', url);
+  console.log(req.session.user_id);
+  console.log('====================================');
 
+  if(!isLogin && (url.indexOf('/auth/login') > -1 || url.indexOf('/members/register') > -1)) {
+    next();
+  }else if(isLogin && url.indexOf('/auth/logout') > -1 ) {
+    next();
+  }else if(url === '/')  {
+    next();
+  }else {
+    res.send(`
+      <html>
+        <body>
+          you have been not login. <br>
+          if you want to log-in Click <a href="/auth/login"><b>Here</b></a>
+        </body>
+      </html>
+      `);
+  }
 
-app.use(express.static('public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+  // if(isLogin && req.originalUrl.indexOf('/auth/') == -1)  {
+  //   var user_id = req.session.user_id;
+  //   console.log(req.user);
+  //   console.log(user_id);
+  //   console.log('user_id is '+user_id);
+  //   next();
+  // }else if(!isLogin && req.originalUrl.indexOf('/auth/') > -1) {
+  //   console.log( '1111111');
+  //   next();
+  // }else {
+  //   console.log( '2222222');
+  //   res.send(`
+  //     <html>
+  //       <body>
+  //         you have been not login. <br>
+  //         if you want to log-in Click <a href="/auth/login"><b>Here</b></a>
+  //       </body>
+  //     </html>
+  //     `);
+  // }
+});
 
-app.use(session({
- secret: 'miracomSecretKey',
- resave: false,
- saveUninitialized: true
-}));
-
-var auth = require('./router/auth')(app);
 var members = require('./router/members')(app);
 var ap_ep = require('./router/ap_ep')(app);
 var sapi = require('./router/service_api')(app);
 // /*routing */
-app.use('/auth',auth); //로그인/인증관련
 app.use('/members',members); //회원정보 관리
 app.use('/ap_ep',ap_ep); //AP/EP관리
 app.use('/sapi',sapi); //서비스 api
 
-var server = app.listen(7777, function(){
- console.log("Group_2 Express server has started on port 7777");
+app.set('views', './views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+//var router = require('./router/auth')(app,session);//로그인/인증관련
+//var router = require('./router/main')(app, fs);
+
+app.get('/',function(req,res){
+    res.render('index', {
+        title: "MY HOMEPAGE",
+        sessionId : "",
+        length: 5
+    });
 });
 
-var router = require('./router/main')(app, fs);
+var auth = require('./router/auth')();
+app.use('/auth', auth);
+
+var server = app.listen(7777, function(){
+  console.log("Group_2 Express server has started on port 7777....");
+});
