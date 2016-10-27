@@ -36,3 +36,54 @@ Sat, 22 Oct 2016 15:16:15 GMT body-parser deprecated undefined extended: provide
 Group_2 Express server has started on port 7777
 =======
 >>>>>>> 815a1994b881b84325e123e295609706a6751e5e
+[2016/10/22_15:52:55]
+/home/ubuntu/group_2/server.js:5
+<<<<<<< HEAD
+^^
+SyntaxError: Unexpected token <<
+    at Object.exports.runInThisContext (vm.js:53:16)
+    at Module._compile (module.js:513:28)
+    at Object.Module._extensions..js (module.js:550:10)
+    at Module.load (module.js:458:32)
+    at tryModuleLoad (module.js:417:12)
+    at Function.Module._load (module.js:409:3)
+    at Module.runMain (module.js:575:10)
+    at run (node.js:348:7)
+    at startup (node.js:140:9)
+    at node.js:463:3
+[2016/10/22_15:53:40]
+/home/ubuntu/group_2/server.js:5
+<<<<<<< HEAD
+^^
+SyntaxError: Unexpected token <<
+    at Object.exports.runInThisContext (vm.js:53:16)
+    at Module._compile (module.js:513:28)
+    at Object.Module._extensions..js (module.js:550:10)
+    at Module.load (module.js:458:32)
+    at tryModuleLoad (module.js:417:12)
+    at Function.Module._load (module.js:409:3)
+    at Module.runMain (module.js:575:10)
+    at run (node.js:348:7)
+    at startup (node.js:140:9)
+    at node.js:463:3
+[2016/10/22_15:59:00]
+module.js:96
+    throw e;
+    ^
+
+SyntaxError: Error parsing /home/ubuntu/group_2/node_modules/express/package.json: Unexpected token < in JSON at position 246
+    at Object.parse (native)
+    at readPackage (module.js:92:52)
+    at tryPackage (module.js:102:13)
+    at Function.Module._findPath (module.js:172:20)
+    at Function.Module._resolveFilename (module.js:438:25)
+    at Function.Module._load (module.js:388:25)
+    at Module.require (module.js:468:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (/home/ubuntu/group_2/server.js:1:77)
+    at Module._compile (module.js:541:32)
+[2016/10/22_16:42:01]
+Sat, 22 Oct 2016 16:42:01 GMT body-parser deprecated undefined extended: provide extended option at server.js:21:20
+Group_2 Express server has started on port 7777
+INSERT INTO TB_USER_MASTER (USER_ID, USER_NAME, REGION1, REGION2, USER_ADDRESS, POSTAL_CODE, TEL_NO, USER_SEX, USER_YEARS, HOME_MEM_GBN, CREATE_DTTM, UPDATE_DTTM)VALUES('qq', '', 'GG', 'GG001', '강원도 춘천', '111222', '', 'M', '10', '01', sysdate(), '')
+INSERT INTO TB_USER_MASTER (USER_ID, USER_NAME, REGION1, REGION2, USER_ADDRESS, POSTAL_CODE, TEL_NO, USER_SEX, USER_YEARS, HOME_MEM_GBN, CREATE_DTTM, UPDATE_DTTM)VALUES('qq', '', 'GG', 'GG001', '강원도 춘천', '111222', '', 'M', '10', '01', sysdate(), '')
