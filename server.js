@@ -41,11 +41,11 @@ app.use(function (req, res, next) {
 });
 
 var members = require('./router/members')(app);
-var ap_ep = require('./router/ap_ep')(app);
+var ap_ep = require('./router/apep')(app);
 var sapi = require('./router/service_api')(app);
 // /*routing */
 app.use('/members',members); //회원정보 관리
-app.use('/ap_ep',ap_ep); //AP/EP관리
+app.use('/apep',ap_ep); //AP/EP관리
 app.use('/sapi',sapi); //서비스 api
 
 app.set('views', './views');
