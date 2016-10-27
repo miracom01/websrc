@@ -13,6 +13,7 @@ app.use(morgan('debug', {stream: accessLogStream}));
 app.use(function (req, res, next) {
   var isLogin = false;
   var url = req.originalUrl;
+
   if(req.session.user_id) {
     isLogin = true;
   }
@@ -56,11 +57,12 @@ app.engine('html', require('ejs').renderFile);
 //var router = require('./router/main')(app, fs);
 
 app.get('/',function(req,res){
-    res.render('index', {
-        title: "MY HOMEPAGE",
-        sessionId : "",
-        length: 5
-    });
+  res.redirect('/auth/login');
+  // res.render('index', {
+  //     title: "MY HOMEPAGE",
+  //     sessionId : "",
+  //     length: 5
+  // });
 });
 
 app.get('/main',function(req,res){
