@@ -6,9 +6,7 @@ module.exports = function(){
 
   var app = express();
   // create a write stream (in append mode)
-
-
-  app.use(express.static('public'));
+app.use(express.static('public'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded());
   // app.set('views', './views');
