@@ -9,6 +9,7 @@ var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {
 // setup the logger
 app.use(morgan('debug', {stream: accessLogStream}));
 
+
 app.use(function (req, res, next) {
   var isLogin = false;
   var url = req.originalUrl;
@@ -18,12 +19,12 @@ app.use(function (req, res, next) {
   console.log('====================================');
   console.log( isLogin );
   console.log('Request URL:', url);
-  console.log(req.session.user_id);
+  console.log(req.session.user_id,req.session.user_name);
   console.log('====================================');
 
   if(!isLogin && (url.indexOf('/auth/login') > -1 || url.indexOf('/members/register') > -1)) {
     next();
-  }else if(isLogin && url.indexOf('/auth/logout') > -1 ) {
+  }else if(isLogin ) {
     next();
   }else if(url === '/')  {
     next();
@@ -38,26 +39,6 @@ app.use(function (req, res, next) {
       `);
   }
 
-  // if(isLogin && req.originalUrl.indexOf('/auth/') == -1)  {
-  //   var user_id = req.session.user_id;
-  //   console.log(req.user);
-  //   console.log(user_id);
-  //   console.log('user_id is '+user_id);
-  //   next();
-  // }else if(!isLogin && req.originalUrl.indexOf('/auth/') > -1) {
-  //   console.log( '1111111');
-  //   next();
-  // }else {
-  //   console.log( '2222222');
-  //   res.send(`
-  //     <html>
-  //       <body>
-  //         you have been not login. <br>
-  //         if you want to log-in Click <a href="/auth/login"><b>Here</b></a>
-  //       </body>
-  //     </html>
-  //     `);
-  // }
 });
 
 var members = require('./router/members')(app);
@@ -82,9 +63,16 @@ app.get('/',function(req,res){
     });
 });
 
+app.get('/main',function(req,res){
+    res.render('main', {
+        userId: req.session.user_id,
+        displayUserName : req.session.user_name
+    });
+});
+
 var auth = require('./router/auth')();
 app.use('/auth', auth);
 
 var server = app.listen(7777, function(){
-  console.log("Group_2 Express server has started on port 7777....");
+  console.log("Group_2 Express server has started on port 7777....qq");
 });
