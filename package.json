@@ -1,14 +1,18 @@
 {
-  "name": "express-tutorial",
+  "name": "HSGCD",
   "version": "1.0.0",
   "dependencies": {
     "body-parser": "^1.14.2",
     "ejs": "~2.4.1",
     "express": "^4.13.4",
+    "express-mysql-session": "^1.2.0",
     "express-session": "^1.13.0",
+    "jade": "^1.11.0",
     "morgan": "^1.7.0",
-    "mysql": "^2.11.1",
+    "node-mysql": "^0.4.2",
     "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pbkdf2-password": "^1.2.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   }

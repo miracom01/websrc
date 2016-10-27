@@ -5,25 +5,25 @@
 <div class="container dotted">
   <h2 class="underline">Register Member</h2>
   <br>
-  <form class="form-horizontal">
+  <form class="form-horizontal" method="post">
     <div class="form-group">
-      <label class="control-label col-sm-3" for="email">User ID : </label>
+      <label class="control-label col-sm-3" for="username">User ID : </label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" id="userid" placeholder="Enter your ID or email-address">
+        <input type="text" class="form-control" name="username" id="username" placeholder="Enter your ID or email-address">
         <button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search"></span> Validate</button>
       </div>
 
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Password:</label>
+      <label class="control-label col-sm-3" for="password">Password:</label>
       <div class="col-sm-9">
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+        <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-3" for="email">User Name : </label>
+      <label class="control-label col-sm-3" for="displayName">User Name : </label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" id="userid" placeholder="Enter your full name">
+        <input type="text" class="form-control" name="displayName" id="displayName" placeholder="Enter your full name">
       </div>
     </div>
     <div class="form-group">
@@ -89,7 +89,7 @@
     <div class="form-group">
       <div class="col-sm-offset-11">
         <!--<button type="submit" class="btn btn-default">Submit</button>-->
-        <button type="button" class="btn btn-info btn-md"><span class="glyphicon glyphicon-ok"></span> Submit</button>
+        <button type="submit" class="btn btn-info btn-md"><span class="glyphicon glyphicon-ok"></span> Submit</button>
       </div>
     </div>
 
