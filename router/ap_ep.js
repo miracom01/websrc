@@ -4,13 +4,12 @@ module.exports = function(app) {
   var route = express.Router();
 
   route.get('/ApEpManagement',function(req,res){
-      res.send("test")
-//res.render('ApEpManagement', {});
+    res.render('ApEpManagement', {
+            userId: req.session.user_id,
+            displayUserName : req.session.user_name});
   });
 
   route.get('/listApEpList',function(req,res) {
-    //test
-      res.render('ApEpManagement', {});
   });
   return route;
 };
