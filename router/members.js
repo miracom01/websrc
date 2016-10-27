@@ -25,7 +25,8 @@ module.exports = function(app) {
           req.session.user_name = user.user_name;
           console.log("login finished : "+req.session.user_id);
           req.session.save(function(){
-            res.render('index',{sessionId:req.session.user_id});
+            res.redirect('/main');
+            //res.render('index',{sessionId:req.session.user_id});
           });
         }
       });

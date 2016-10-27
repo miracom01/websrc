@@ -87,3 +87,830 @@ Sat, 22 Oct 2016 16:42:01 GMT body-parser deprecated undefined extended: provide
 Group_2 Express server has started on port 7777
 INSERT INTO TB_USER_MASTER (USER_ID, USER_NAME, REGION1, REGION2, USER_ADDRESS, POSTAL_CODE, TEL_NO, USER_SEX, USER_YEARS, HOME_MEM_GBN, CREATE_DTTM, UPDATE_DTTM)VALUES('qq', '', 'GG', 'GG001', '강원도 춘천', '111222', '', 'M', '10', '01', sysdate(), '')
 INSERT INTO TB_USER_MASTER (USER_ID, USER_NAME, REGION1, REGION2, USER_ADDRESS, POSTAL_CODE, TEL_NO, USER_SEX, USER_YEARS, HOME_MEM_GBN, CREATE_DTTM, UPDATE_DTTM)VALUES('qq', '', 'GG', 'GG001', '강원도 춘천', '111222', '', 'M', '10', '01', sysdate(), '')
+[2016/10/27_13:12:07]
+Thu, 27 Oct 2016 13:12:07 GMT body-parser deprecated undefined extended: provide extended option at config/mysql/express.js:11:22
+Group_2 Express server has started on port 7777....qq
+====================================
+true
+Request URL: /
+ronaldolee72@gmail.com LEE YOUGNMIN
+====================================
+====================================
+true
+Request URL: /main
+ronaldolee72@gmail.com LEE YOUGNMIN
+====================================
+====================================
+true
+Request URL: /auth/logout
+ronaldolee72@gmail.com LEE YOUGNMIN
+====================================
+logout finished : ronaldolee72@gmail.com
+====================================
+false
+Request URL: /auth/login
+undefined 'LEE YOUGNMIN'
+====================================
+====================================
+false
+Request URL: /members/register
+undefined 'LEE YOUGNMIN'
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined 'LEE YOUGNMIN'
+====================================
+[32VhA/QG/S75bOsFtsYJT5Zx0nzl30p0bxxPm5oN3A6rHlBm6hJEWr/pXAgDRuaDN20kxCRHew8mQFrDFwlOb9iCShWgu2l9FrR0Al34QPoE7ZqEpH7evqhbGubCyfwFoT1YydubGYtFDuqcJI60uLjm1IWHEMG/f6vJSC7/nsM=] [32VhA/QG/S75bOsFtsYJT5Zx0nzl30p0bxxPm5oN3A6rHlBm6hJEWr/pXAgDRuaDN20kxCRHew8mQFrDFwlOb9iCShWgu2l9FrR0Al34QPoE7ZqEpH7evqhbGubCyfwFoT1YydubGYtFDuqcJI60uLjm1IWHEMG/f6vJSC7/nsM=]
+LocalStrategy RowDataPacket {
+  USER_ID: 'david',
+  USER_NAME: '마이클 조던',
+  PASSWORD: '32VhA/QG/S75bOsFtsYJT5Zx0nzl30p0bxxPm5oN3A6rHlBm6hJEWr/pXAgDRuaDN20kxCRHew8mQFrDFwlOb9iCShWgu2l9FrR0Al34QPoE7ZqEpH7evqhbGubCyfwFoT1YydubGYtFDuqcJI60uLjm1IWHEMG/f6vJSC7/nsM=',
+  SALT: '1cmBNl0OOM9PxQbJZjTeT/Ef37e9zL2aQUEor+U4flFasX6H4VEpLElKlyWU1lrsGynOPTvcP3Zej0+PIyP2Cw==',
+  REGION1: null,
+  REGION2: null,
+  USER_ADDRESS: null,
+  POSTAL_CODE: null,
+  TEL_NO: null,
+  USER_SEX: null,
+  USER_YEARS: null,
+  HOME_MEM_GBN: null,
+  CREATE_DTTM: 2016-10-27T13:07:39.000Z,
+  UPDATE_DTTM: null }
+====================================
+true
+Request URL: /main
+david 마이클 조던
+====================================
+====================================
+true
+Request URL: /
+david 마이클 조던
+====================================
+====================================
+true
+Request URL: /main
+david 마이클 조던
+====================================
+====================================
+true
+Request URL: /auth/logout
+david 마이클 조던
+====================================
+logout finished : david
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined '마이클 조던'
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined '마이클 조던'
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined '마이클 조던'
+====================================
+There is no user!
+====================================
+false
+Request URL: /auth/login
+undefined '마이클 조던'
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+There is no user!
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined '마이클 조던'
+====================================
+There is no user!
+====================================
+false
+Request URL: /auth/login
+undefined '마이클 조던'
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined '마이클 조던'
+====================================
+[h2BKt0X3jXFCz5FdZzx+ML9P6muo0JDeEwOVD8O6/0POHd4ZH441IAroH6FSWEok0qMLnsMT/b28CIlXl3KCFecsI2SGBTOsCl7bxtCcu+VxuRcwgg6UqhEElV6f9m48O0s38iG9wGP1AEmV1eQgmuN5Wy4bWVpBxzuIWoab0HY=] [h2BKt0X3jXFCz5FdZzx+ML9P6muo0JDeEwOVD8O6/0POHd4ZH441IAroH6FSWEok0qMLnsMT/b28CIlXl3KCFecsI2SGBTOsCl7bxtCcu+VxuRcwgg6UqhEElV6f9m48O0s38iG9wGP1AEmV1eQgmuN5Wy4bWVpBxzuIWoab0HY=]
+LocalStrategy RowDataPacket {
+  USER_ID: 'ronaldolee72@gmail.com',
+  USER_NAME: 'LEE YOUGNMIN',
+  PASSWORD: 'h2BKt0X3jXFCz5FdZzx+ML9P6muo0JDeEwOVD8O6/0POHd4ZH441IAroH6FSWEok0qMLnsMT/b28CIlXl3KCFecsI2SGBTOsCl7bxtCcu+VxuRcwgg6UqhEElV6f9m48O0s38iG9wGP1AEmV1eQgmuN5Wy4bWVpBxzuIWoab0HY=',
+  SALT: 'KWDrVdg6MclJ0fdnYGa8P6xe0ifT70GuTuWtF+bLS36KdS2joZ0nUBXXaq9ClQkzHdngcepbUKKxJ0arGe6vEQ==',
+  REGION1: null,
+  REGION2: null,
+  USER_ADDRESS: null,
+  POSTAL_CODE: null,
+  TEL_NO: null,
+  USER_SEX: null,
+  USER_YEARS: null,
+  HOME_MEM_GBN: null,
+  CREATE_DTTM: 2016-10-27T12:09:27.000Z,
+  UPDATE_DTTM: null }
+====================================
+true
+Request URL: /main
+ronaldolee72@gmail.com LEE YOUGNMIN
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+There is no user!
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+true
+Request URL: /auth/logout
+ronaldolee72@gmail.com LEE YOUGNMIN
+====================================
+logout finished : ronaldolee72@gmail.com
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+There is no user!
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /members/register
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+[h2BKt0X3jXFCz5FdZzx+ML9P6muo0JDeEwOVD8O6/0POHd4ZH441IAroH6FSWEok0qMLnsMT/b28CIlXl3KCFecsI2SGBTOsCl7bxtCcu+VxuRcwgg6UqhEElV6f9m48O0s38iG9wGP1AEmV1eQgmuN5Wy4bWVpBxzuIWoab0HY=] [h2BKt0X3jXFCz5FdZzx+ML9P6muo0JDeEwOVD8O6/0POHd4ZH441IAroH6FSWEok0qMLnsMT/b28CIlXl3KCFecsI2SGBTOsCl7bxtCcu+VxuRcwgg6UqhEElV6f9m48O0s38iG9wGP1AEmV1eQgmuN5Wy4bWVpBxzuIWoab0HY=]
+LocalStrategy RowDataPacket {
+  USER_ID: 'ronaldolee72@gmail.com',
+  USER_NAME: 'LEE YOUGNMIN',
+  PASSWORD: 'h2BKt0X3jXFCz5FdZzx+ML9P6muo0JDeEwOVD8O6/0POHd4ZH441IAroH6FSWEok0qMLnsMT/b28CIlXl3KCFecsI2SGBTOsCl7bxtCcu+VxuRcwgg6UqhEElV6f9m48O0s38iG9wGP1AEmV1eQgmuN5Wy4bWVpBxzuIWoab0HY=',
+  SALT: 'KWDrVdg6MclJ0fdnYGa8P6xe0ifT70GuTuWtF+bLS36KdS2joZ0nUBXXaq9ClQkzHdngcepbUKKxJ0arGe6vEQ==',
+  REGION1: null,
+  REGION2: null,
+  USER_ADDRESS: null,
+  POSTAL_CODE: null,
+  TEL_NO: null,
+  USER_SEX: null,
+  USER_YEARS: null,
+  HOME_MEM_GBN: null,
+  CREATE_DTTM: 2016-10-27T12:09:27.000Z,
+  UPDATE_DTTM: null }
+====================================
+true
+Request URL: /main
+ronaldolee72@gmail.com LEE YOUGNMIN
+====================================
+====================================
+true
+Request URL: /favicon.ico
+ronaldolee72@gmail.com LEE YOUGNMIN
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /members/register
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /members/register
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+true
+Request URL: /
+ronaldolee72@gmail.com LEE YOUGNMIN
+====================================
+====================================
+true
+Request URL: /main
+ronaldolee72@gmail.com LEE YOUGNMIN
+====================================
+====================================
+true
+Request URL: /auth/logout
+ronaldolee72@gmail.com LEE YOUGNMIN
+====================================
+logout finished : ronaldolee72@gmail.com
+====================================
+false
+Request URL: /auth/logout
+undefined 'LEE YOUGNMIN'
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined 'LEE YOUGNMIN'
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined 'LEE YOUGNMIN'
+====================================
+[h2BKt0X3jXFCz5FdZzx+ML9P6muo0JDeEwOVD8O6/0POHd4ZH441IAroH6FSWEok0qMLnsMT/b28CIlXl3KCFecsI2SGBTOsCl7bxtCcu+VxuRcwgg6UqhEElV6f9m48O0s38iG9wGP1AEmV1eQgmuN5Wy4bWVpBxzuIWoab0HY=] [h2BKt0X3jXFCz5FdZzx+ML9P6muo0JDeEwOVD8O6/0POHd4ZH441IAroH6FSWEok0qMLnsMT/b28CIlXl3KCFecsI2SGBTOsCl7bxtCcu+VxuRcwgg6UqhEElV6f9m48O0s38iG9wGP1AEmV1eQgmuN5Wy4bWVpBxzuIWoab0HY=]
+LocalStrategy RowDataPacket {
+  USER_ID: 'ronaldolee72@gmail.com',
+  USER_NAME: 'LEE YOUGNMIN',
+  PASSWORD: 'h2BKt0X3jXFCz5FdZzx+ML9P6muo0JDeEwOVD8O6/0POHd4ZH441IAroH6FSWEok0qMLnsMT/b28CIlXl3KCFecsI2SGBTOsCl7bxtCcu+VxuRcwgg6UqhEElV6f9m48O0s38iG9wGP1AEmV1eQgmuN5Wy4bWVpBxzuIWoab0HY=',
+  SALT: 'KWDrVdg6MclJ0fdnYGa8P6xe0ifT70GuTuWtF+bLS36KdS2joZ0nUBXXaq9ClQkzHdngcepbUKKxJ0arGe6vEQ==',
+  REGION1: null,
+  REGION2: null,
+  USER_ADDRESS: null,
+  POSTAL_CODE: null,
+  TEL_NO: null,
+  USER_SEX: null,
+  USER_YEARS: null,
+  HOME_MEM_GBN: null,
+  CREATE_DTTM: 2016-10-27T12:09:27.000Z,
+  UPDATE_DTTM: null }
+====================================
+true
+Request URL: /main
+ronaldolee72@gmail.com LEE YOUGNMIN
+====================================
+====================================
+true
+Request URL: /auth/login
+ronaldolee72@gmail.com LEE YOUGNMIN
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+There is no user!
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+There is no user!
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+There is no user!
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /members/register
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /members/register
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /members/register
+undefined undefined
+====================================
+wook wook 1
+login finished : wook
+====================================
+true
+Request URL: /main
+wook wook
+====================================
+====================================
+true
+Request URL: /favicon.ico
+wook wook
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined undefined
+====================================
+====================================
+false
+Request URL: /favicon.ico
+undefined undefined
+====================================
+====================================
+false
+Request URL: /members/register
+undefined undefined
+====================================
+====================================
+false
+Request URL: /members/register
+undefined undefined
+====================================
+meanjoon@naver.com alswns alswns
+login finished : meanjoon@naver.com
+====================================
+true
+Request URL: /main
+meanjoon@naver.com alswns
+====================================
+====================================
+true
+Request URL: /auth/logout
+meanjoon@naver.com alswns
+====================================
+logout finished : meanjoon@naver.com
+====================================
+false
+Request URL: /auth/login
+undefined 'alswns'
+====================================
+====================================
+false
+Request URL: /members/register
+undefined 'alswns'
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined 'alswns'
+====================================
+[ylV50JGuY8elVV6eAvSxp74CQGN+fMAdDl+21Rdg0TlvDgSxAxjpJ1MGDLKdZGJ95lOi8OHXhifsQG0lBLtPykC6AnDZ3dxipFC/OWtRdZ1TEa+FLpXJg+x21G43N+7OqQ1C4ouizla6vMX4nk+HKSr6zDM0B9soZYZOFV0tr0Q=] [ylV50JGuY8elVV6eAvSxp74CQGN+fMAdDl+21Rdg0TlvDgSxAxjpJ1MGDLKdZGJ95lOi8OHXhifsQG0lBLtPykC6AnDZ3dxipFC/OWtRdZ1TEa+FLpXJg+x21G43N+7OqQ1C4ouizla6vMX4nk+HKSr6zDM0B9soZYZOFV0tr0Q=]
+LocalStrategy RowDataPacket {
+  USER_ID: 'meanjoon@naver.com',
+  USER_NAME: 'alswns',
+  PASSWORD: 'ylV50JGuY8elVV6eAvSxp74CQGN+fMAdDl+21Rdg0TlvDgSxAxjpJ1MGDLKdZGJ95lOi8OHXhifsQG0lBLtPykC6AnDZ3dxipFC/OWtRdZ1TEa+FLpXJg+x21G43N+7OqQ1C4ouizla6vMX4nk+HKSr6zDM0B9soZYZOFV0tr0Q=',
+  SALT: 'Rn9GypGlmkDPynSZBFMYhBzQj/vZnj7f1jyWiBkrLMNKDbNgSlkgx4KqxKYqaL0DuZKHZ2Uq0Hj09cJm6xf2mA==',
+  REGION1: null,
+  REGION2: null,
+  USER_ADDRESS: null,
+  POSTAL_CODE: null,
+  TEL_NO: null,
+  USER_SEX: null,
+  USER_YEARS: null,
+  HOME_MEM_GBN: null,
+  CREATE_DTTM: 2016-10-27T15:40:50.000Z,
+  UPDATE_DTTM: null }
+====================================
+true
+Request URL: /main
+meanjoon@naver.com alswns
+====================================
+====================================
+true
+Request URL: /index
+meanjoon@naver.com alswns
+====================================
+====================================
+true
+Request URL: /main
+meanjoon@naver.com alswns
+====================================
+====================================
+true
+Request URL: /auth/logout
+meanjoon@naver.com alswns
+====================================
+logout finished : meanjoon@naver.com
+====================================
+false
+Request URL: /auth/login
+undefined 'alswns'
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined 'alswns'
+====================================
+====================================
+false
+Request URL: /auth/login
+undefined 'alswns'
+====================================
+[ylV50JGuY8elVV6eAvSxp74CQGN+fMAdDl+21Rdg0TlvDgSxAxjpJ1MGDLKdZGJ95lOi8OHXhifsQG0lBLtPykC6AnDZ3dxipFC/OWtRdZ1TEa+FLpXJg+x21G43N+7OqQ1C4ouizla6vMX4nk+HKSr6zDM0B9soZYZOFV0tr0Q=] [ylV50JGuY8elVV6eAvSxp74CQGN+fMAdDl+21Rdg0TlvDgSxAxjpJ1MGDLKdZGJ95lOi8OHXhifsQG0lBLtPykC6AnDZ3dxipFC/OWtRdZ1TEa+FLpXJg+x21G43N+7OqQ1C4ouizla6vMX4nk+HKSr6zDM0B9soZYZOFV0tr0Q=]
+LocalStrategy RowDataPacket {
+  USER_ID: 'meanjoon@naver.com',
+  USER_NAME: 'alswns',
+  PASSWORD: 'ylV50JGuY8elVV6eAvSxp74CQGN+fMAdDl+21Rdg0TlvDgSxAxjpJ1MGDLKdZGJ95lOi8OHXhifsQG0lBLtPykC6AnDZ3dxipFC/OWtRdZ1TEa+FLpXJg+x21G43N+7OqQ1C4ouizla6vMX4nk+HKSr6zDM0B9soZYZOFV0tr0Q=',
+  SALT: 'Rn9GypGlmkDPynSZBFMYhBzQj/vZnj7f1jyWiBkrLMNKDbNgSlkgx4KqxKYqaL0DuZKHZ2Uq0Hj09cJm6xf2mA==',
+  REGION1: null,
+  REGION2: null,
+  USER_ADDRESS: null,
+  POSTAL_CODE: null,
+  TEL_NO: null,
+  USER_SEX: null,
+  USER_YEARS: null,
+  HOME_MEM_GBN: null,
+  CREATE_DTTM: 2016-10-27T15:40:50.000Z,
+  UPDATE_DTTM: null }
+====================================
+true
+Request URL: /main
+meanjoon@naver.com alswns
+====================================
