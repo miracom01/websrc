@@ -27,8 +27,6 @@ app.use(function (req, res, next) {
     next();
   }else if(isLogin ) {
     next();
-  }else if(url === '/')  {
-    next();
   }else {
     res.send(`
       <html>
@@ -57,12 +55,7 @@ app.engine('html', require('ejs').renderFile);
 //var router = require('./router/main')(app, fs);
 
 app.get('/',function(req,res){
-  res.redirect('/auth/login');
-  // res.render('index', {
-  //     title: "MY HOMEPAGE",
-  //     sessionId : "",
-  //     length: 5
-  // });
+  res.redirect('/main');
 });
 
 app.get('/main',function(req,res){
