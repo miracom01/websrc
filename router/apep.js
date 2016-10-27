@@ -1,6 +1,7 @@
 
 module.exports = function(app) {
-  var route = require('express').Router();
+  var express = require('express');
+  var route = express.Router();
 
   route.get('/ApEpManagement',function(req,res){
       res.send("test")
