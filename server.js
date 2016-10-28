@@ -72,13 +72,13 @@ app.get('/main',function(req,res){
 
 
 
-route.post('/main', function(req, res, next){
+app.post('/main', function(req, res, next){
   //txtInputApSN
   //txtInputApName
-  res.send('user id: ' + req.session.user_id + ' /ap_name: ' +req.body.addApform.txtInputApName+ ' /ap_sn' +req.body.addApform.txtInputApSN );
+  res.send('user id: ' + req.session.user_id + ' /ap_name: ' +req.body.txtInputApName+ ' /ap_sn' +req.body.txtInputApSN );
 
 
-    console.log(req.session.user_id, req.body.addApform.txtInputApName, req.body.addApform.txtInputApSN);
+    console.log(req.session.user_id, req.body.txtInputApName, req.body.txtInputApSN);
     var user = {
       user_id:req.session.user_id,
       ap_name:req.body.addApform.txtInputApName,
