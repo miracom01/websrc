@@ -8,14 +8,14 @@ module.exports = function(app) {
   });
 
 
-  route.post('/ApEpManagement', function(req, res){
+  route.post('/ApEpManagement', function(req, res, next){
     //txtInputApSN
     //txtInputApName
-      console.log(req.session.user_id, req.body.txtInputApName, req.body.txtInputApSN);
+      console.log(req.session.user_id, req.body.addApform.txtInputApName, req.body.addApform.txtInputApSN);
       var user = {
         user_id:req.session.user_id,
-        ap_name:req.body.txtInputApName,
-        ap_sn:req.body.txtInputApSN
+        ap_name:req.body.addApform.txtInputApName,
+        ap_sn:req.body.addApform.txtInputApSN
       };
 
       res.send('user id: ' + req.session.user_id + ' /ap_name: ' +req.body.txtInputApName+ ' /ap_sn' +req.body.txtInputApSN );
