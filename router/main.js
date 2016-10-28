@@ -2,6 +2,19 @@ module.exports = function(app, fs)
 {
   var express = require('express');
   var route = express.Router();
+
+
+  app.get('/',function(req,res){
+    res.redirect('/main');
+  });
+
+  app.get('/main',function(req,res){
+      res.render('main', {
+          userId: req.session.user_id,
+          displayUserName : req.session.user_name
+      });
+  });
+
   route.post('/main', function(req, res, next){
     //txtInputApSN
     //txtInputApName
