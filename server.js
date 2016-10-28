@@ -64,10 +64,14 @@ app.get('/',function(req,res){
 });
 
 app.get('/main',function(req,res){
+    var deviceInfo = [{ap_name: 'test1_1', ap_sn: 'test1_2'},
+                 {ap_name: 'test2_1' , ap_sn: 'test2_2'}];
+
     res.render('main', {
-        userId: req.session.user_id,
-        displayUserName : req.session.user_name
-    });
+         userId: req.session.user_id,
+         displayUserName : req.session.user_name,
+         deviceInfo: devicesInfo
+     });
 });
 
 
@@ -76,17 +80,6 @@ app.post('/main', function(req, res, next){
   //txtInputApSN
   //txtInputApName
   if(req.body.hidPostKey == "addAp"){
-    
-  }
-  res.send('user id: ' + req.session.user_id + ' /ap_name: ' +req.body.txtInputApName+ ' /ap_sn' +req.body.txtInputApSN );
-    console.log(req.session.user_id, req.body.txtInputApName, req.body.txtInputApSN);
-    var user = {
-      user_id:req.session.user_id,
-      ap_name:req.body.txtInputApName,
-      ap_sn:req.body.txtInputApSN
-    };
-
-    /*
     var sql = 'INSERT INTO TB_EQUIP_MASTER SET ?';
     conn.query(sql, user, function(err, results){
       if(err){
@@ -102,7 +95,16 @@ app.post('/main', function(req, res, next){
         });
       }
     });
-    */
+  }
+  res.send('user id: ' + req.session.user_id + ' /ap_name: ' +req.body.txtInputApName+ ' /ap_sn' +req.body.txtInputApSN );
+    console.log(req.session.user_id, req.body.txtInputApName, req.body.txtInputApSN);
+    var user = {
+      user_id:req.session.user_id,
+      ap_name:req.body.txtInputApName,
+      ap_sn:req.body.txtInputApSN
+    };
+
+
 });
 
 
