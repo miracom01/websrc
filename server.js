@@ -64,13 +64,12 @@ app.get('/',function(req,res){
 });
 
 app.get('/main',function(req,res){
-    var deviceInfo = [{ap_name: 'test1_1', ap_sn: 'test1_2'},
-                 {ap_name: 'test2_1' , ap_sn: 'test2_2'}];
+    var deviceInfo = [{ap_name:'test1_1',ap_sn:'test1_2'},{ap_name:'test2_1',ap_sn:'test2_2'}];
 
     res.render('main', {
          userId: req.session.user_id,
          displayUserName : req.session.user_name,
-         deviceInfo: devicesInfo
+         deviceInfo: deviceInfo
      });
 });
 
