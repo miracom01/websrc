@@ -53,7 +53,7 @@
           <li><a href="#">Statistics</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> <%=displayUserName%> (<%=userId%>)</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> <%= displayUserName %> (<%= userId %>)</a></li>
           <li><a href="/auth/logout"><span class="glyphicon glyphicon-shopping-cart"></span> LogOut</a></li>
         </ul>
       </div>
@@ -64,7 +64,7 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 col-lg-2">
       <div class="well">
-        <h4><%=displayUserName%>'s Home <a href="#"><span class="glyphicon glyphicon-cog"></span>  </a>
+        <h4><%= displayUserName %>'s Home <a href="#"><span class="glyphicon glyphicon-cog"></span>  </a>
         </h4>
        <div class="panel panel-default">
          <div class="panel-heading">* 전월 누적(Kwh)</div>
@@ -105,14 +105,13 @@
       <div class="row">
 <!-- AP EP Card 반복 -->
 
-
-<!-- <% entries.map(function(entry)){ %> -->
-<div>
+ <% deviceInfo.forEach(function(device) { %>
+<div class="col-sm-3">
   <div class="panel panel-primary">
     <div class="panel-heading table-responsive" style="padding:5px 5px 5px 10px">
       <table style="width:100%">
         <tr>
-          <td width="*" style="align:left;"><%= entry.ap_name %> / <%= entry.ap_sn %> </td>
+          <td width="*" style="align:left;"><%= device.ap_name %> / <%= device.ap_sn %> </td>
           <td width="32px" style="align:right;"><img src="/images/edit.png" class="img-responsive" style="width:32px;height:32px;" alt="Image"></td>
         </tr>
       </table>
@@ -158,9 +157,8 @@
     <!--<div class="panel-footer">Buy 50 mobiles and get a gift card</div>-->
   </div>
 </div>
-<!-- <% }); %> -->
 
-
+  <% }); %>
 
 <!-- 반복 끝 -->
         <div class="col-sm-3">
