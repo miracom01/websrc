@@ -1,8 +1,7 @@
 module.exports = function(app, fs)
 {
-
-
-
+  var express = require('express');
+  var route = express.Router();
   route.post('/main', function(req, res, next){
     //txtInputApSN
     //txtInputApName
