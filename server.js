@@ -57,7 +57,7 @@ app.engine('html', require('ejs').renderFile);
 //var router = require('./router/main')(app, fs);
 
 app.get('/',function(req,res){
-  res.redirect('/main');
+  res.redirect('/main/main');
 });
 
 var auth = require('./router/auth')();
