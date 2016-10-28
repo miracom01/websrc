@@ -75,17 +75,16 @@ app.get('/main',function(req,res){
 app.post('/main', function(req, res, next){
   //txtInputApSN
   //txtInputApName
+  if(req.body.hidPostKey == "addAp"){
+    
+  }
   res.send('user id: ' + req.session.user_id + ' /ap_name: ' +req.body.txtInputApName+ ' /ap_sn' +req.body.txtInputApSN );
-
-
     console.log(req.session.user_id, req.body.txtInputApName, req.body.txtInputApSN);
     var user = {
       user_id:req.session.user_id,
-      ap_name:req.body.addApform.txtInputApName,
-      ap_sn:req.body.addApform.txtInputApSN
+      ap_name:req.body.txtInputApName,
+      ap_sn:req.body.txtInputApSN
     };
-
-    res.send('user id: ' + req.session.user_id + ' /ap_name: ' +req.body.txtInputApName+ ' /ap_sn' +req.body.txtInputApSN );
 
     /*
     var sql = 'INSERT INTO TB_EQUIP_MASTER SET ?';
