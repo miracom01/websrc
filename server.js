@@ -43,12 +43,10 @@ app.use(function (req, res, next) {
 var members = require('./router/members')(app);
 var ap_ep = require('./router/ap_ep')(app);
 var sapi = require('./router/service_api')(app);
-var main = require('./router/main')(app);
 // /*routing */
 app.use('/members',members); //회원정보 관리
 app.use('/ap_ep',ap_ep); //AP/EP관리
 app.use('/sapi',sapi); //서비스 api
-app.use('/main',main); //서비스 api
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
@@ -56,12 +54,61 @@ app.engine('html', require('ejs').renderFile);
 //var router = require('./router/auth')(app,session);//로그인/인증관련
 //var router = require('./router/main')(app, fs);
 
-app.get('/',function(req,res){
-  res.redirect('/main/main');
-});
 
 var auth = require('./router/auth')();
 app.use('/auth', auth);
+
+
+app.get('/',function(req,res){
+  res.redirect('/main');
+});
+
+app.get('/main',function(req,res){
+    res.render('main', {
+        userId: req.session.user_id,
+        displayUserName : req.session.user_name
+    });
+});
+
+
+
+route.post('/main', function(req, res, next){
+  //txtInputApSN
+  //txtInputApName
+  res.send('user id: ' + req.session.user_id + ' /ap_name: ' +req.body.addApform.txtInputApName+ ' /ap_sn' +req.body.addApform.txtInputApSN );
+
+
+    console.log(req.session.user_id, req.body.addApform.txtInputApName, req.body.addApform.txtInputApSN);
+    var user = {
+      user_id:req.session.user_id,
+      ap_name:req.body.addApform.txtInputApName,
+      ap_sn:req.body.addApform.txtInputApSN
+    };
+
+    res.send('user id: ' + req.session.user_id + ' /ap_name: ' +req.body.txtInputApName+ ' /ap_sn' +req.body.txtInputApSN );
+
+    /*
+    var sql = 'INSERT INTO TB_EQUIP_MASTER SET ?';
+    conn.query(sql, user, function(err, results){
+      if(err){
+        console.log(err);
+        res.status(500);
+      } else {
+        req.session.user_id = user.user_id;
+        req.session.user_name = user.user_name;
+        console.log("login finished : "+req.session.user_id);
+        req.session.save(function(){
+          res.redirect('/main');
+          //res.render('index',{sessionId:req.session.user_id});
+        });
+      }
+    });
+    */
+});
+
+
+
+
 
 var server = app.listen(7777, function(){
   console.log("Group_2 Express server has started on port 7777....qq");
