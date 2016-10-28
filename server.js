@@ -43,10 +43,12 @@ app.use(function (req, res, next) {
 var members = require('./router/members')(app);
 var ap_ep = require('./router/ap_ep')(app);
 var sapi = require('./router/service_api')(app);
+var main = require('./router/main')(app);
 // /*routing */
 app.use('/members',members); //회원정보 관리
 app.use('/ap_ep',ap_ep); //AP/EP관리
 app.use('/sapi',sapi); //서비스 api
+app.use('/main',main); //서비스 api
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
@@ -56,13 +58,6 @@ app.engine('html', require('ejs').renderFile);
 
 app.get('/',function(req,res){
   res.redirect('/main');
-});
-
-app.get('/main',function(req,res){
-    res.render('main', {
-        userId: req.session.user_id,
-        displayUserName : req.session.user_name
-    });
 });
 
 var auth = require('./router/auth')();
