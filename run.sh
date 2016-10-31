@@ -2,7 +2,7 @@
 #nohup node ./server.js >> ./log/log.out &
 cd /home/ubuntu/group_2
 
-PROC_NAME="server.js"
+PROC_NAME="group2_server.js"
 PID=`ps -ef | grep "${PROC_NAME}" | grep -v "grep" | awk '{print $2}'  `
 
 if [ ${PID} ];then
