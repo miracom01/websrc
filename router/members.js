@@ -34,7 +34,7 @@ module.exports = function(app) {
   });
 
   route.get('/register', function(req, res){
-    res.render('new_member_create', {});
+    res.render('members/new_member_create');
   });
 
 
