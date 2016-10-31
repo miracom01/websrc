@@ -117,5 +117,5 @@ app.post('/main', function(req, res, next){
 
 
 var server = app.listen(7777, function(){
-  console.log("Group_2 Express server has started on port 7777....qq");
+  console.log("Group_2 Express server has started on port 7777.");
 });
