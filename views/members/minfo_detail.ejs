@@ -44,7 +44,7 @@ $(document).ready(function(){
     <div class="form-group">
       <label class="control-label col-sm-3" for="username">User ID : </label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" name="username" id="username" placeholder="Enter your ID or email-address">
+        <input type="text" class="form-control" name="username" id="username" placeholder="Enter your ID or email-address" readonly value="<%=minfo.user_id%>">
         <button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search"></span> Validate</button>
       </div>
 
@@ -58,20 +58,22 @@ $(document).ready(function(){
     <div class="form-group">
       <label class="control-label col-sm-3" for="displayName">User Name : </label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" name="displayName" id="displayName" placeholder="Enter your full name">
+        <input type="text" class="form-control" name="displayName" id="displayName" placeholder="Enter your full name" readonly value="<%=minfo.user_name%>">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-3" for="email">Region : </label>
-      <div id="region1" class="dropdown col-sm-2">
-        <select style="width:150px">
+      <div id="select_box" class="dropdown col-sm-2">
+        <select id="region1" style="width:130px">
+          <%for(var a = 0; a < 1; a++) {%>
           <option value="SL">Seoul</option>
           <option value="GG">GyoungGi</option>
           <option value="GW">GangWon</option>
+          <%}%>
         </select>
 	    </div>
 	    <div class="dropdown col-sm-2">
-		    <select id="region2" style="width:150px">
+		    <select id="region2" style="width:250px">
           <option value="">서울</option>
           <option value="">경기</option>
           <option value="">강원</option>
@@ -99,15 +101,6 @@ $(document).ready(function(){
           <option value="50">50 to 59</option>
           <option value="60">over 60</option>
         </select>
-		    <!--<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">select Age&nbsp;&nbsp;&nbsp;<span class="caret"></span></button>
-		    <ul class="dropdown-menu">
-		      <li><a href="#">0 to 9</a></li>
-		      <li><a href="#">10 to 19</a></li>
-		      <li><a href="#">20 to 29</a></li>
-		      <li><a href="#">30 to 39</a></li>
-		      <li><a href="#">40 to 49</a></li>
-		      <li><a href="#">50 to 59</a></li>
-		      <li><a href="#">over 60</a></li>-->
 		    </ul>
 		  </div>
 		  <div class="col-sm-5"></div>

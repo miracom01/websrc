@@ -37,6 +37,41 @@ module.exports = function(app) {
     res.render('members/new_member_create');
   });
 
+  route.get('/getRegion2ByAjax', function(req,res){
+    console.log('/members/getRegion2ByAjax', req.query.region1);
+    var sql = `
+    SELECT CODE, CODE_NAME, DESCRIPTION
+    FROM TB_COMMCODE WHERE P_CODE=?
+    ORDER BY DP_ORDER`;
+    console.log(sql);
+    conn.query(sql, [req.query.region1], function(err, results){
+      if(err){
+        console.log(err);
+        res.status(500).end();
+      } else {
+        res.send({reg2Info:results});
+      }
+    });
+
+
+
+  });
+
+  route.get('/minfo_detail', function(req, res){
+    var sql = 'SELECT user_id, user_name FROM TB_USER_MASTER WHERE USER_ID=?';
+    conn.query(sql, [req.session.user_id], function(err, results){
+      if(err){
+        console.log(err);
+        res.status(500).end();
+      } else {
+        var minfo = results[0];
+        res.render('members/minfo_detail',{minfo:minfo});
+      }
+    });
+
+
+  });
+
 
   // route.post('/newMember',function(req,res) {
   //   var sql = "INSERT INTO TB_USER_MASTER "
