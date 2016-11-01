@@ -81,37 +81,14 @@ app.get('/main',function(req,res){
 
 
 
-app.post('/main', function(req, res, next){
-  //txtInputApSN
-  //txtInputApName
-  if(req.body.hidPostKey == "addAp"){
-    var sql = 'INSERT INTO TB_EQUIP_MASTER SET ?';
-    conn.query(sql, user, function(err, results){
-      if(err){
-        console.log(err);
-        res.status(500);
-      } else {
-        req.session.user_id = user.user_id;
-        req.session.user_name = user.user_name;
-        console.log("login finished : "+req.session.user_id);
-        req.session.save(function(){
-          res.redirect('/main');
-          //res.render('index',{sessionId:req.session.user_id});
-        });
-      }
-    });
-  }
-  res.send('user id: ' + req.session.user_id + ' /ap_name: ' +req.body.txtInputApName+ ' /ap_sn' +req.body.txtInputApSN );
-    console.log(req.session.user_id, req.body.txtInputApName, req.body.txtInputApSN);
-    var user = {
-      user_id:req.session.user_id,
-      ap_name:req.body.txtInputApName,
-      ap_sn:req.body.txtInputApSN
-    };
+// commit 방식에서 ajax 방식으로 변경
+app.post('/addEPAP', function(req, res){
+  var type = req.param('type');
+  var ApEPName = req.param('ApEPName');
+  var ApSN = req.param('ApSN');
 
-
+    res.send('성공!!');
 });
-
 
 
 
