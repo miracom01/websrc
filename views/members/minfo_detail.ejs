@@ -7,7 +7,7 @@ $(document).ready(function(){
     url: "/members/getRegion2ByAjax",
     data: {region1: $('#region1 option:selected').val()},
     success: function(result){
-      //alert(JSON.stringify(result));
+      alert(JSON.stringify(result));
       var rinfo = result.reg2Info;
       var str;
       for(var i=0; i < rinfo.length; i++) {
@@ -17,7 +17,7 @@ $(document).ready(function(){
       $("#region2").html(str);
     }
   });
-  
+
   $("#region1").change(function(){
     $.ajax({
       url: "/members/getRegion2ByAjax",
@@ -93,13 +93,14 @@ $(document).ready(function(){
 		  <div class="dropdown col-sm-2" >
         <select style="width:150px">
           <option value="" selected>Select Age</option>
-          <option value="0">0 to 9</option>
-          <option value="10">10 to 19</option>
-          <option value="20">20 to 29</option>
-          <option value="30">30 to 39</option>
-          <option value="40">40 to 49</option>
-          <option value="50">50 to 59</option>
-          <option value="60">over 60</option>
+          <option value="AG001">0 to 9</option>
+          <option value="AG002">10 to 19</option>
+          <option value="AG003">20 to 29</option>
+          <option value="AG004">30 to 39</option>
+          <option value="AG005">40 to 49</option>
+          <option value="AG006">50 to 59</option>
+          <option value="AG007">60 to 69</option>
+          <option value="AG008">over 70</option>
         </select>
 		    </ul>
 		  </div>

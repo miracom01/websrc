@@ -19,7 +19,7 @@ module.exports = function(app) {
       conn.query(sql, user, function(err, results){
         if(err){
           console.log(err);
-          res.status(500);
+          res.status(500).send();
         } else {
           req.session.user_id = user.user_id;
           req.session.user_name = user.user_name;
@@ -40,14 +40,14 @@ module.exports = function(app) {
   route.get('/getRegion2ByAjax', function(req,res){
     console.log('/members/getRegion2ByAjax', req.query.region1);
     var sql = `
-    SELECT CODE, CODE_NAME, DESCRIPTION
-    FROM TB_COMMCODE WHERE P_CODE=?
-    ORDER BY DP_ORDER`;
-    console.log(sql);
+      SELECT CODE, CODE_NAME, DESCRIPTION
+      FROM TB_COMMCODE WHERE P_CODE=?
+      ORDER BY DP_ORDER`;
+    //console.log(sql);
     conn.query(sql, [req.query.region1], function(err, results){
       if(err){
         console.log(err);
-        res.status(500).end();
+        res.status(500).send();
       } else {
         res.send({reg2Info:results});
       }
