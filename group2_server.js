@@ -65,6 +65,8 @@ app.get('/',function(req,res){
 });
 
 app.get('/main',function(req,res){
+    var userid = req.session.user_id;
+    
     var deviceInfo = [{ap_name:"test1_1",ap_sn:"test1_2"},
                       {ap_name:"test2_1",ap_sn:"test2_2"},
                       {ap_name:"test3_1",ap_sn:"test3_2"},
@@ -91,13 +93,6 @@ app.post('/addEPAP', function(req, res){
   var userid = req.session.user_id;
 
   console.log("[AddEquip(try)] " + userid + ": " + type + "/" + EqName + "/" + EqSN + "/" + ApSN  );
-/*  var user = {
-    user_id:userid,
-    type:type,
-    EqName:EqName,
-    EqSN:EqSN,
-    ApSN:ApSN
-  };*/
 
   //1?TYPE
   //2?EqSN
@@ -112,7 +107,6 @@ app.post('/addEPAP', function(req, res){
   sql += " (SELECT EQ_NO FROM TB_EQUIP_MASTER WHERE EQ_GBN='AP' AND SERIAL_NO=? ) , ";
   sql += " ? , now() ";
   sql += " from dual ";
-  console.log(sql);
   conn.query(sql, [type,EqSN,type,userid,ApSN,EqName], function(err, results){
     if(err){
       console.log("[AddEquip(fail)] " + userid + ": " + type + "/" + EqName + "/" + EqSN + "/" + ApSN  );
