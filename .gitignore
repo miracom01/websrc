@@ -1,4 +1,4 @@
-*.log
 *.out
-*.log
+
+access.log
 *.log
