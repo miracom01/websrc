@@ -4,40 +4,82 @@ module.exports = function(app) {
   var route = express.Router();
   var conn = require('../config/mysql/db')();
 
-  //1) 전력 측정 데이터 저장
+  //1) 전력 측정 데이터 저장(IoT)
   route.get('/saveVoltData', function(req,res) {
-    var eq_no = req.query.eq_no;
-    var m_yyyymmdd = req.query.m_yyyymmdd;
-    var m_hhmiss = req.query.m_hhmiss;
-    var m_value = req.query.m_value;
-
-    var sql = `
-    INSERT INTO TB_EQ_VOLT_MEASURE
-    (EQ_NO, M_YYYYMMDD, M_HHMISS, M_VALUE)
-    VALUES
-    (?, ?, ?, ?)`;
-
-    var errObj = {
-      errCode: "",
-      errNo: ""
+    var data = {
+      eq_no: req.query.eq_no,
+      m_yyyymmdd: req.query.m_yyyymmdd,
+      m_hhmiss: req.query.m_hhmiss,
+      m_value: req.query.m_value
     };
-    conn.query(sql, [eq_no, m_yyyymmdd, m_hhmiss, m_value], function(err, results){
+    var sql = "INSERT INTO TB_EQ_VOLT_MEASURE SET ?";
+    conn.query(sql, data, function(err, results){
       if(err){
         console.log(err);
-        errObj.errCode = err.code;
-        errObj.errNo = err.errno;
-        res.send({result:false, err:errObj});
+        res.send({'result':false, 'errCode': err.errCode});
+      }else {
+        console.log(JSON.stringify(results));
+        res.send(results);
       }
-      res.send({'result':true});
     });
   });
-  //2) 장비 제어 처리결과 회신
-  route.get('/sendResultOfControl',function(req,res) {
 
+  //2) 장비 제어 처리결과 회신(IoT)
+  route.get('/sendResultOfControl',function(req,res) {
+    //eq_no=201610EP0000000003&c_yyyymmdd=20161031&c_hhmiss=100534&c_signal=1
+    var eq_no = req.query.eq_no;
+    var c_yyyymmdd = req.query.c_yyyymmdd;
+    var c_hhmiss = req.query.c_hhmiss;
+    var c_signal = req.query.c_signal;
+    var fin_yn = 'Y';
+
+    var sql = 'UPDATE TB_EQ_CTRL_SIGNAL SET FIN_YN = ? WHERE EQ_NO = ? AND C_YYYYMMDD = ? AND C_HHMISS = ? AND C_SIGNAL = ?';
+    conn.query(sql, [fin_yn, eq_no, c_yyyymmdd, c_hhmiss, c_signal], function(err, results){
+      if(err){
+        console.log(err);
+        res.send({'result': false, 'errCode': err.errCode});
+      }else {
+        console.log(JSON.stringify(results));
+        res.send(results);
+      }
+    });
   });
-  //3) EP 장비 제어 신호 확인
+
+  //3) EP 장비 제어 신호 확인(IoT)
   route.get('/getSignalOfControl',function(req,res) {
-    res.send('checkEpStatus in ep_id :'+req.params.ep_id+', aa : '+req.query.aa);
+    var eq_no = req.query.eq_no;
+    var sql = "SELECT * FROM TB_EQ_CTRL_SIGNAL WHERE EP_NO = ? AND FIN_YN = 'Y'";
+    conn.query(sql, [eq_no], function(err, results){
+      if(err){
+        console.log(err);
+        res.send({'result': false, 'errCode': err.errCode});
+      }else {
+        console.log(JSON.stringify(results));
+        res.send(results);
+      }
+    });
+  });
+
+  //3) EP 장비 제어 신호 확인
+  route.get('/saveSignalOfControl',function(req,res) {
+    var signalInfo = {
+      eq_no: req.query.eq_no,
+      c_yyyymmdd: req.query.c_yyyymmdd,
+      c_hhmiss: req.query.c_hhmiss,
+      c_signal: req.query.c_signal
+    };
+    //console.log(signalInfo);
+    var sql = 'INSERT INTO TB_EQ_CTRL_SIGNAL SET ?';
+    conn.query(sql, signalInfo, function(err, results){
+      if(err){
+        console.log(err);
+        res.send({'result': false, 'errCode': err.errCode});
+      }else{
+        console.log(JSON.stringify(results));
+        res.send(results);
+      }
+
+    });
   });
 
   return route;
