@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
   console.log(req.session.user_id,req.session.user_name);
   console.log('====================================');
 
-  if(!isLogin && (url.indexOf('/auth/login') > -1 || url.indexOf('/members/register') > -1)) {
+  if(!isLogin && (url.indexOf('/auth/login') > -1 || url.indexOf('/members/register') > -1 || url.indexOf('/sapi/') > -1)) {
     next();
   }else if(isLogin ) {
     next();
@@ -66,7 +66,7 @@ app.get('/',function(req,res){
 
 app.get('/main',function(req,res){
     var userid = req.session.user_id;
-    
+
     var deviceInfo = [{ap_name:"test1_1",ap_sn:"test1_2"},
                       {ap_name:"test2_1",ap_sn:"test2_2"},
                       {ap_name:"test3_1",ap_sn:"test3_2"},
