@@ -66,9 +66,9 @@
 
 
 <!-- 본문 시작 -->
-<div class="container" style="width: 100%;">
+<div class="container" style="width: 90%;">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="이름 검색" id="txtSearchString" id="txtSearchString">
         <span class="input-group-btn">
@@ -79,12 +79,16 @@
   </div><!-- /.row -->
 
 <div class="row">
-  <div class="col-lg-4">
-    <table class="table table-hover" cellspacing="0" width="100%">
+  <div class="col-lg-3">
+    <table id="TbMemberList"  class="table table-hover" cellspacing="0" width="100%">
+      <thead>
+        <tr>
         <th>이름</th>
         <th> ID </th>
-    </table>
-    <table id="TbMemberList"  class="table table-hover" cellspacing="0" width="100%">
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
     </table>
     <nav aria-label="Page navigation">
       <ul class="pagination" id="memListPagenation" name="memListPagenation">
@@ -92,14 +96,19 @@
     </nav>
   </div><!-- /.col-lg-6 -->
 
-  <div class="col-lg-7">
-    <table class="table table-hover" cellspacing="0" width="100%">
-        <th>Serial No</th>
-        <th> 장비구분 </th>
-        <th>AP Serial No</th>
-        <th> 기기종류 </th>
-    </table>
+  <div class="col-lg-6">
     <table id="TbDeviceList"  class="table table-hover" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+      <th>Serial No</th>
+      <th> 장비구분 </th>
+      <th>AP Serial No</th>
+      <th> 기기종류 </th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
     </table>
     <nav aria-label="Page navigation">
       <ul class="pagination" id="DevListPagenation" name="DevListPagenation">

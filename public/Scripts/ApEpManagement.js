@@ -46,9 +46,9 @@ function getDeviceList(userid, pageNum){
 
 function drawPersonTable(data,pageSize){
  var tableList = data.personList;
-  $("#TbMemberList tr").remove("tr");
+  $("#TbMemberList > tbody tr").remove("tr");
  for(var i=0; i<tableList.length; i++){
-   $('#TbMemberList').append( "<tr><td><a href='#' onclick='getDeviceList(\""+tableList[i].USER_ID+"\",1)'>"+tableList[i].USER_ID+"</a></td><td>"+tableList[i].USER_NAME+"</td></tr>" );
+   $('#TbMemberList > tbody').append( "<tr><td><a href='#' onclick='getDeviceList(\""+tableList[i].USER_ID+"\",1)'>"+tableList[i].USER_ID+"</a></td><td>"+tableList[i].USER_NAME+"</td></tr>" );
  }
  var total_cnt = parseInt(data.total_cnt[0].CNT/pageSize) + (data.total_cnt[0].CNT % pageSize>0?1:0);
  $("#memListPagenation li").remove();
@@ -61,9 +61,9 @@ function drawPersonTable(data,pageSize){
 function drawDevTable(data,pageSize){
  var tableList = data.deviceInfo;
 
-  $("#TbDeviceList tr").remove("tr");
+  $("#TbDeviceList > tbody tr").remove("");
  for(var i=0; i<tableList.length; i++){
-   $('#TbDeviceList').append( "<tr><td>"+tableList[i].SERIAL_NO+"</td><td>"+tableList[i].EQ_GBN+"</td><td>"+tableList[i].AP_SN+"</td><td>"+tableList[i].TGT_APPLIANCE_NAME_KOR+"</td></tr>" );
+   $('#TbDeviceList  > tbody').append( "<tr><td>"+tableList[i].SERIAL_NO+"</td><td>"+tableList[i].EQ_GBN+"</td><td>"+tableList[i].AP_SN+"</td><td>"+tableList[i].TGT_APPLIANCE_NAME_KOR+"</td></tr>" );
  }
  var total_cnt = parseInt(data.total_cnt[0].CNT/pageSize) + (data.total_cnt[0].CNT % pageSize>0?1:0);
  $("#DevListPagenation li").remove();
