@@ -77,14 +77,13 @@ app.get('/main',function(req,res){
       console.log(err);
       res.status(500).send();
     } else {
-      applianceInfo =  JSON.stringify(results);
-      //console.log("[getApplianceInfo(Success)] " +req.session.user_id + "/ " + applianceInfo );
+      applianceInfo =  results;
     }
   });
 
 
 
-  sql = " SELECT MAST.EQ_NO, SERIAL_NO, EQ_GBN, AP_NO, CODE_NAME TGT_APPLIANCE_NAME_ENG, DESCRIPTION TGT_APPLIANCE_NAME_KOR, IFNULL(RESERVED1,'antenna.png') ICON_NM, C_YYYYMMDD, C_HHMISS, C_SIGNAL ";
+  sql = " SELECT MAST.EQ_NO, SERIAL_NO, EQ_GBN, AP_NO, IFNULL(CODE_NAME,'AP') TGT_APPLIANCE_NAME_ENG, IFNULL(DESCRIPTION,'AP') TGT_APPLIANCE_NAME_KOR, IFNULL(RESERVED1,'antenna.png') ICON_NM, C_YYYYMMDD, C_HHMISS, C_SIGNAL ";
   sql +=  " FROM ";
   sql +=  " TB_EQUIP_MASTER MAST ";
   sql +=  " LEFT OUTER JOIN ";
@@ -126,11 +125,10 @@ app.get('/main',function(req,res){
 });
 
 
-
-// commit 방식에서 ajax 방식으로 변경
 app.post('/addEPAP', function(req, res){
   var type = req.param('type');
   var EqName = req.param('EqName');
+  var EqKind = req.param('EqKind');
   var EqSN = req.param('EqSN');
   var ApSN = req.param('ApSN');
   var userid = req.session.user_id;
@@ -142,7 +140,7 @@ app.post('/addEPAP', function(req, res){
   //3?type
   //4?userid
   //5?ApSN
-  //6?EqName
+  //6?EqKind
   var sql = "INSERT INTO TB_EQUIP_MASTER(EQ_NO,SERIAL_NO, EQ_GBN, EQ_USER_ID, AP_NO, TGT_APPLIANCE, CREATE_DTTM ) ";
   sql += " SELECT ";
   sql += " (SELECT CONCAT(DATE_FORMAT(NOW(),'%Y%m'),?,LPAD(MAX(SUBSTR(EQ_NO,9))+1,10,0)) NEXT_VAL FROM TB_EQUIP_MASTER WHERE SUBSTR(EQ_NO,1,6)= DATE_FORMAT(NOW(),'%Y%m')), ";
@@ -150,22 +148,17 @@ app.post('/addEPAP', function(req, res){
   sql += " (SELECT EQ_NO FROM TB_EQUIP_MASTER WHERE EQ_GBN='AP' AND SERIAL_NO=? ) , ";
   sql += " ? , now() ";
   sql += " from dual ";
-  conn.query(sql, [type,EqSN,type,userid,ApSN,EqName], function(err, results){
+  conn.query(sql, [type,EqSN,type,userid,ApSN,EqKind], function(err, results){
     if(err){
-      console.log("[AddEquip(fail)] " + userid + ": " + type + "/" + EqName + "/" + EqSN + "/" + ApSN  );
+      console.log("[AddEquip(fail)] " + userid + ": " + type + "/" + EqKind + "/" + EqSN + "/" + ApSN  );
       console.log(err);
       res.status(500).send();
     } else {
-      console.log("[AddEquip(Success)] " + userid + ": " + type + "/" + EqName + "/" + EqSN + "/" + ApSN  );
+      console.log("[AddEquip(Success)] " + userid + ": " + type + "/" + EqKind + "/" + EqSN + "/" + ApSN  );
       res.send('입력 성공!!');
     }
   });
-
-
 });
-
-
-
 
 var server = app.listen(7777, function(){
   console.log("Group_2 Express server has started on port 7777.");

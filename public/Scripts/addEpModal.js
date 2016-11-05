@@ -1,6 +1,7 @@
 $(document).ready(function(){
   //초기 세팅
 $('#divAPSn').hide();
+$('#divEPKind').hide();
 
 //AP EP Type 선택
   $('#btn_addEpModal_AP').on('click',function(){
@@ -8,13 +9,16 @@ $('#divAPSn').hide();
     $('#btn_addEpModal_AP').prop('class','btn btn-primary');
     $('#btn_addEpModal_EP').prop('class','btn btn-default');
     $('#divAPSn').hide();
+    $('#divEPKind').hide();
     $('#txt_addEpModal_ApSN').val('');
+    $('#ddlEPKind').html('선택 <span class="caret"></span>');
     });
   $('#btn_addEpModal_EP').on('click',function(){
       $('#txtInputAPEPType').val('EP');
       $('#btn_addEpModal_EP').prop('class','btn btn-primary');
       $('#btn_addEpModal_AP').prop('class','btn btn-default');
       $('#divAPSn').show();
+      $('#divEPKind').show();
     });
 
 
@@ -24,6 +28,7 @@ $('#divAPSn').hide();
 
        var type = $('#txtInputAPEPType').val();
        var EqName = $('#txt_addEpModal_ApEPName').val();
+       var EqKind = $('#txtEPKind').val();
        var ApSN = $('#txt_addEpModal_ApSN').val();
        var EqSN =  $('#txt_addEpModal_EQSN').val();
 
@@ -31,7 +36,7 @@ $('#divAPSn').hide();
        $.ajax({
          url:'/addEPAP',
          type:'POST',
-          data:{type:type,EqName:EqName,EqSN:EqSN,ApSN:ApSN},
+          data:{type:type,EqKind:EqKind,EqName:EqName,EqSN:EqSN,ApSN:ApSN},
           success:function(data){
             alert(data);
             init_addEpMoal();
@@ -117,4 +122,12 @@ function init_addEpMoal(){
   $('#txtInputAPEPType').val('');
   $('#txt_addEpModal_ApEPName').val('');
   $('#txt_addEpModal_ApSN').val('');
+
+  $('#ddlEPKind').html('선택 <span class="caret"></span>');
+}
+
+
+function changeEPKind(name,code){
+  $('txtEPKind').val(code);
+  $('#ddlEPKind').html(name +' <span class="caret"></span>');
 }
