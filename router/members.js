@@ -8,12 +8,17 @@ module.exports = function(app) {
 
   route.post('/register', function(req, res){
     hasher({password:req.body.password}, function(err, pass, salt, hash){
-      console.log(req.body.username, req.body.displayName, req.body.password);
+      //console.log(req.body.username, req.body.displayName, req.body.password);
       var user = {
-        user_id:req.body.username,
-        user_name:req.body.displayName,
-        password:hash,
-        salt:salt
+        user_id: req.body.username,
+        user_name: req.body.displayName,
+        password: hash,
+        salt: salt,
+        region1: req.body.region1,
+        region2: req.body.region2,
+        sex: req.body.sex,
+        age: req.body.age,
+        home_mem_gbn: req.body.home_mem_gbn
       };
       var sql = 'INSERT INTO TB_USER_MASTER SET ?';
       conn.query(sql, user, function(err, results){
@@ -37,12 +42,51 @@ module.exports = function(app) {
     res.render('members/new_member_create');
   });
 
+  route.get('/getMemberGbnByAjax', function(req,res){
+    //console.log('/members/getRegion2ByAjax', req.query.region1);
+    var sql = "SELECT CODE, CODE_NAME, DESCRIPTION FROM TB_COMMCODE WHERE P_CODE = 'HOME' ORDER BY DP_ORDER";
+    //console.log(sql);
+    conn.query(sql, function(err, results){
+      if(err){
+        console.log(err);
+        res.status(500).send();
+      } else {
+        res.send({oinfo:results});
+      }
+    });
+  });
+
+  route.get('/getAgeByAjax', function(req,res){
+    //console.log('/members/getRegion2ByAjax', req.query.region1);
+    var sql = "SELECT CODE, CODE_NAME, DESCRIPTION FROM TB_COMMCODE WHERE P_CODE = 'AGE' ORDER BY DP_ORDER";
+    //console.log(sql);
+    conn.query(sql, function(err, results){
+      if(err){
+        console.log(err);
+        res.status(500).send();
+      } else {
+        res.send({oinfo:results});
+      }
+    });
+  });
+
+  route.get('/getRegionByAjax', function(req,res){
+    //console.log('/members/getRegion2ByAjax', req.query.region1);
+    var sql = "SELECT CODE, CODE_NAME, DESCRIPTION FROM TB_COMMCODE WHERE P_CODE = 'REGION' ORDER BY DP_ORDER";
+    //console.log(sql);
+    conn.query(sql, function(err, results){
+      if(err){
+        console.log(err);
+        res.status(500).send();
+      } else {
+        res.send({reg1Info:results});
+      }
+    });
+  });
+
   route.get('/getRegion2ByAjax', function(req,res){
-    console.log('/members/getRegion2ByAjax', req.query.region1);
-    var sql = `
-      SELECT CODE, CODE_NAME, DESCRIPTION
-      FROM TB_COMMCODE WHERE P_CODE=?
-      ORDER BY DP_ORDER`;
+    //console.log('/members/getRegion2ByAjax', req.query.region1);
+    var sql = "SELECT CODE, CODE_NAME, DESCRIPTION FROM TB_COMMCODE WHERE P_CODE = ?  ORDER BY DP_ORDER";
     //console.log(sql);
     conn.query(sql, [req.query.region1], function(err, results){
       if(err){
@@ -52,13 +96,10 @@ module.exports = function(app) {
         res.send({reg2Info:results});
       }
     });
-
-
-
   });
 
   route.get('/minfo_detail', function(req, res){
-    var sql = 'SELECT user_id, user_name FROM TB_USER_MASTER WHERE USER_ID=?';
+    var sql = 'SELECT user_id, user_name, region1, region2, user_sex, user_years, home_mem_gbn FROM TB_USER_MASTER WHERE USER_ID = ?';
     conn.query(sql, [req.session.user_id], function(err, results){
       if(err){
         console.log(err);
@@ -68,29 +109,35 @@ module.exports = function(app) {
         res.render('members/minfo_detail',{minfo:minfo});
       }
     });
-
-
   });
 
+  route.post('/minfo_update', function(req, res){
+    console.log(req.body.region1, req.body.region2, req.body.password);
+    console.log(req.body.sex, req.body.age, req.body.home_mem_gbn);
+    hasher({password:req.body.password}, function(err, pass, salt, hash){
 
-  // route.post('/newMember',function(req,res) {
-  //   var sql = "INSERT INTO TB_USER_MASTER "
-  //       + "(USER_ID, USER_NAME, REGION1, REGION2, USER_ADDRESS, POSTAL_CODE, TEL_NO, USER_SEX, USER_YEARS, HOME_MEM_GBN, CREATE_DTTM, UPDATE_DTTM)"
-  //       + "VALUES"
-  //       + "('qq', '', 'GG', 'GG001', '강원도 춘천', '111222', '', 'M', '10', '01', sysdate(), '')";
-  //
-  // });
-  //
-  // route.get('/newMember',function(req,res) {
-  //   res.render('new_member_create',{});
-  //
-  //   var sql = "INSERT INTO TB_USER_MASTER "
-  //       + "(USER_ID, USER_NAME, REGION1, REGION2, USER_ADDRESS, POSTAL_CODE, TEL_NO, USER_SEX, USER_YEARS, HOME_MEM_GBN, CREATE_DTTM, UPDATE_DTTM)"
-  //       + "VALUES"
-  //       + "('qq', '', 'GG', 'GG001', '강원도 춘천', '111222', '', 'M', '10', '01', sysdate(), '')";
-  //
-  //   console.log(sql);
-  // });
+      var user_id = req.body.username;
+      var region1 = req.body.region1;
+      var region2 = req.body.region2;
+      var sex = req.body.sex;
+      var age = req.body.age;
+      var home_mem_gbn = req.body.home_mem_gbn;
+      var sql = `
+        UPDATE TB_USER_MASTER
+        SET PASSWORD = ?, SALT = ?, REGION1 = ?, REGION2 = ?, USER_SEX = ?, USER_YEARS = ?, HOME_MEM_GBN = ?, UPDATE_DTTM = SYSDATE()
+        WHERE USER_ID = ?`;
+
+      conn.query(sql, [hash,salt,region1,region2,sex,age,home_mem_gbn,user_id], function(err, results){
+        if(err){
+          console.log(err);
+          res.status(500).send();
+        } else {
+          console.log(results);
+          res.redirect('/main');
+        }
+      });
+    });
+  });
 
   return route;
 };
