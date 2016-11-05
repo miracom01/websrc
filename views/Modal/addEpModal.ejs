@@ -12,28 +12,38 @@
            <div class="container-fluid">
              <div class="row">
                <div class="col-sm-9">
-                 <h4> AP / EP 정보 </h4>
                  <div class="form-group" style="display:none;">
                    <input type="text" id="txtInputAPEPType" name="txtInputAPEPType">
+                   <input type="text" id="txtEPKind" name="txtEPKind">
                  </div>
                  <div class="btn-group" role="group">
                   <button type="button" class="btn btn-default" id="btn_addEpModal_AP">AP</button>
                   <button type="button" class="btn btn-default" id="btn_addEpModal_EP">EP</button>
                 </div>
-                 <div class="form-group">
+                <div class="dropdown" id="divEPKind" name="divEPKind">
+                    <label for="ddlEPKind">기기종류: </label><br />
+                    <button class="btn btn-default dropdown-toggle" type="button" id="ddlEPKind" name="ddlEPKind" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      선택 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="ddlEPKind">
+                      <% for(var i=0;i<applianceInfo.length;i++){
+                          var appl = applianceInfo[i];
+                       %>
+                       <li><a role="menuitem" href="#" onclick="changeEPKind('<%= appl.DESCRIPTION %>','<%= appl.CODE %>');"><%= appl.DESCRIPTION %></a></li>
+                      <% } %>
+                    </ul>
+                  </div>
+                 <div>
                    <label for="txtInputApName">기기명:</label>
                    <input type="text" class="form-control" id="txt_addEpModal_ApEPName" name="txt_addEpModal_ApEPName">
                  </div>
-                 <div class="form-group">
+                 <div>
                    <label for="txtInputEQSN">기기 S/N:</label>
                    <input type="text" class="form-control" id="txt_addEpModal_EQSN" name="txt_addEpModal_EQSN">
                  </div>
-                 <div class="form-group" style="diplay: none;" id="divAPSn" name="divAPSn">
+                 <div  id="divAPSn" name="divAPSn">
                    <label for="txtInputApSN">연결할 AP S/N</label>
                    <input type="text" class="form-control" id="txt_addEpModal_ApSN" name="txt_addEpModal_ApSN">
-                 </div>
-                 <div class="form-group" style="display: none;">
-                   <input type="text" class="form-control" id="hidPostKey" name="hidPostKey" value="addAp">
                  </div>
                </div>
              </div>
