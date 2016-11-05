@@ -38,9 +38,9 @@ $('#divEPKind').hide();
           data:{type:type,EqKind:EqKind,EqName:EqName,EqSN:EqSN,ApSN:ApSN},
           success:function(data){
             alert(data);
-            init_addEpMoal();
+            init_addEpModal();
             $btn.button('reset');
-            $('#btn_addEpMoal_Close').click();  // modal 닫기
+            $('#btn_addEpModal_Close').click();  // modal 닫기
             location.reload();
           }
         });
@@ -113,7 +113,7 @@ $('#btn_list').on('click',function(){
   */
 });
 
-function init_addEpMoal(){
+function init_addEpModal(){
   $('#txtInputAPEPType').val('');
   $('#btn_addEpModal_AP').prop('class','btn btn-default');
   $('#btn_addEpModal_EP').prop('class','btn btn-default');
@@ -128,7 +128,7 @@ function init_addEpMoal(){
 
 
 function changeEPKind(name,code){
-  $('txtEPKind').val(code);
+  $('#txtEPKind').val(code);
   $('#ddlEPKind').html(name +' <span class="caret"></span>');
 }
 

@@ -115,7 +115,7 @@ app.get('/main',function(req,res){
       console.log(err);
       res.status(500).send();
     } else {
-      deviceInfo =  JSON.stringify(results);
+      deviceInfo =  results;
       //console.log("[getEQList(Success)] " +req.session.user_id + "/ " + deviceInfo );
       res.render("main", {
            "userId": req.session.user_id,
@@ -170,6 +170,98 @@ app.post('/addEPAP', function(req, res){
     }
   });
 });
+
+app.post('/getSelectedApEpInfo', function(req, res){
+  var EqSN = req.param('EqSN');
+  var userid = req.session.user_id;
+  //1?EqSN
+  //2?userid
+  var sql = " SELECT EQ_NO, SERIAL_NO, EQ_GBN, EQ_USER_ID, AP_NO , (SELECT SERIAL_NO FROM TB_EQUIP_MASTER T1 WHERE T1.EQ_NO = TB.AP_NO) AP_SN, TGT_APPLIANCE,  "
+  sql += " (select DESCRIPTION from TB_COMMCODE where p_code ='HOMEAPP' AND CODE = TGT_APPLIANCE) TGT_APPLIANCE_NM  ";
+  sql += " FROM TB_EQUIP_MASTER TB ";
+  sql += " WHERE SERIAL_NO = ? AND EQ_USER_ID = ? ";
+
+  conn.query(sql, [EqSN,userid], function(err, results){
+    if(err){
+      console.log("[GetEquip(fail)] " + userid + ": " + EqSN );
+      console.log(err);
+      res.status(500).send();
+    } else {
+      console.log("[GetEquip(Success)] " + userid + ": " + JSON.stringify(results) );
+      res.send({"EqInfo": results});
+    }
+  });
+});
+
+app.post('/modEPAP', function(req, res){
+  var eq_No = req.param('eq_No');
+  var type = req.param('type');
+  var EqName = req.param('EqName');
+  var EqKind = req.param('EqKind');
+  var EqSN = req.param('EqSN');
+  var ApSN = req.param('ApSN');
+  var userid = req.session.user_id;
+
+  //1?EqSN
+  //2?ApSN
+  //3?eq_No
+//UPDATE TB_EQUIP_MASTER SET AP_NO = (SELECT VAL FROM (SELECT MAX(EQ_NO) VAL FROM TB_EQUIP_MASTER WHERE SERIAL_NO = 'AVD34232-1235' LIMIT 1) AS T) , TGT_APPLIANCE = 'HA005' , UPDATE_DTTM = NOW()
+  var sql = "UPDATE TB_EQUIP_MASTER SET AP_NO =(SELECT VAL FROM (SELECT MAX(EQ_NO) VAL FROM TB_EQUIP_MASTER WHERE SERIAL_NO =  ?  LIMIT 1) AS T), TGT_APPLIANCE = ? , UPDATE_DTTM = NOW() ";
+  sql += "WHERE EQ_NO = ?  AND EQ_USER_ID = ? ";
+
+  conn.query(sql, [ApSN,EqKind,eq_No,userid], function(err, results){
+    if(err){
+      console.log("[ModEquip(fail)] " + userid + ": " + EqSN + "/" + ApSN + "/" + eq_No  );
+      console.log(err);
+      res.status(500).send();
+    } else {
+      console.log("[ModEquip(Success)] " + userid + ": " + EqSN + "/" + ApSN + "/" + eq_No  );
+      res.send('수정 성공!!');
+    }
+  });
+});
+
+app.post('/delEPAP', function(req, res){
+  var EqNO = req.param('EQ_NO');
+  var userid = req.session.user_id;
+
+  //1?EqSN
+  //2?userid
+  var sql = " DELETE FROM TB_EQUIP_MASTER  ";
+  sql += " WHERE EQ_NO = ? AND EQ_USER_ID = ? ";
+
+  conn.query(sql, [EqNO,userid], function(err, results){
+    if(err){
+      console.log("[DelEquip(fail)] " + userid + ": " + EqNO  );
+      console.log(err);
+      res.status(500).send();
+    } else {
+      console.log("[DelEquip(Success)] " + userid + ": " + EqNO );
+      res.send('삭제 성공!!');
+    }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var server = app.listen(7777, function(){
   console.log("Group_2 Express server has started on port 7777.");

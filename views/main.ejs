@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../Scripts/main.js"></script>
   <script src="../Scripts/addEpModal.js"></script>
+  <script src="../Scripts/modEpModal.js"></script>
   <style>
     /* Remove the navbar's default rounded borders and increase the bottom margin */
     .navbar {
@@ -182,7 +184,10 @@
       <table style="width:100%">
         <tr>
           <td width="*" style="align:left;"><%= device.TGT_APPLIANCE_NAME_KOR %>(<%= device.SERIAL_NO %>)</td>
-          <td width="32px" style="align:right;"><img src="/images/edit.png" class="img-responsive" style="width:32px;height:32px;" alt="Image"></td>
+          <td width="32px" style="align:right;">
+            <a href="#" role="button"  data-toggle="modal" data-target="#modEpModal" onclick="setModEpModal('<%= device.SERIAL_NO %>');">
+              <img src="/images/edit.png" class="img-responsive" style="width:32px;height:32px;" alt="Image"></td>
+            </a>
         </tr>
       </table>
     </div>
@@ -257,6 +262,7 @@
 -->
 <!-- Modal Include-->
 <% include ./Modal/addEpModal.ejs %>
+<% include ./Modal/modEpModal.ejs %>
 <!-- Modal Include End-->
 
 
