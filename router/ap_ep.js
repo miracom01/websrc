@@ -11,6 +11,12 @@ module.exports = function(app) {
             displayUserName : req.session.user_name});
   });
 
+  route.get('/ApEpStatistics',function(req,res){
+    res.render('Statistics/Statistics', {
+            userId: req.session.user_id,
+            displayUserName : req.session.user_name});
+  });
+
 
   app.post('/personList', function(req, res){
     //{pageNum:pageNum, pageSize:pageSize, searchKind:searchKind, searchString:searchString}

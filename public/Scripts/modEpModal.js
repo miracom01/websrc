@@ -38,9 +38,6 @@ $(document).ready(function(){
           });
         });
 
-
-
-
         //AP EP Type 선택
         $('#btn_modEpModal_AP').on('click',function(){
           $('#btn_modEpModal_AP').prop('class','btn btn-primary');
