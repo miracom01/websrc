@@ -10,7 +10,7 @@ if [ ${PID} ];then
 else
  # echo "${PROC_NAME} KILL PID : ${PID}"
  # kill ${PID}
-  nohup node ${PROC_NAME} &
+  nohup node ${PROC_NAME} >> ./log/log.out &
   echo "[`date +%Y/%m/%d_%H:%M:%S`] restart Server!"
 fi
 
