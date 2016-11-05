@@ -66,7 +66,7 @@
   <div class="row">
 
 
-    <div class="col-sm-3 col-md-2 col-lg-2"  style="width: 300px">
+    <div class="col-sm-3 col-md-3 col-lg-3" >
       <div class="well">
         <h4><%= displayUserName %>'s Home <a href="#"><span class="glyphicon glyphicon-cog"></span>  </a>
         </h4>
@@ -109,7 +109,7 @@
       <div class="row">
 <!-- ap  신규 생성 부분 -->
 
-<div class="col-sm-3" style="width: 250px">
+<div class="col-sm-3 col-md-3 col-lg-3"  >
   <div class="panel panel-primary">
     <div class="panel-heading table-responsive" style="padding:5px 5px 5px 10px">
       <table style="width:100%">
@@ -169,14 +169,23 @@
 
 
 <!-- AP EP Card 반복 -->
+<!--
+" SELECT MAST.EQ_NO, SERIAL_NO, EQ_GBN, AP_NO, ";
+" (SELECT CODE_NAME FROM TB_COMMCODE WHERE P_CODE='HOMEAPP' AND TGT_APPLIANCE = CODE) TGT_APPLIANCE_NAME_ENG, ";
+" (SELECT DESCRIPTION FROM TB_COMMCODE WHERE P_CODE='HOMEAPP' AND TGT_APPLIANCE = CODE) TGT_APPLIANCE_NAME_KOR, ";
+" C_YYYYMMDD, C_HHMISS, C_SIGNAL "; -->
 
- <% deviceInfo.forEach(function(device) { %>
-<div class="col-sm-3" style="width: 250px">
+
+<% for(var i=0;i<deviceInfo.length;i++){
+    var device = deviceInfo[i];
+ %>
+
+<div  class="col-sm-3 col-md-3 col-lg-3" >
   <div class="panel panel-primary">
     <div class="panel-heading table-responsive" style="padding:5px 5px 5px 10px">
       <table style="width:100%">
         <tr>
-          <td width="*" style="align:left;"><%= device.ap_name %> / <%= device.ap_sn %> </td>
+          <td width="*" style="align:left;"><%= device.TGT_APPLIANCE_NAME_KOR %> /<%= device.TGT_APPLIANCE_NAME_ENG %> </td>
           <td width="32px" style="align:right;"><img src="/images/edit.png" class="img-responsive" style="width:32px;height:32px;" alt="Image"></td>
         </tr>
       </table>
@@ -185,7 +194,7 @@
       <table style="width:100%">
         <tr>
           <td style="width:60%; align:center;">
-            <img src="/images/television.ico" class="img-responsive" style="width:64px; height:64px" alt="Image">
+            <img src="/images/applianceIcon/<%= device.ICON_NM %>" class="img-responsive" style="width:64px; height:64px" alt="Image">
           </td>
           <td style="width:40%">
             <table class="table">
@@ -223,7 +232,7 @@
   </div>
 </div>
 
-  <% }); %>
+  <% } %>
 
 <!-- 반복 끝 -->
 
