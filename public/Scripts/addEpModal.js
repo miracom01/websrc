@@ -32,7 +32,6 @@ $('#divEPKind').hide();
        var ApSN = $('#txt_addEpModal_ApSN').val();
        var EqSN =  $('#txt_addEpModal_EQSN').val();
 
-
        $.ajax({
          url:'/addEPAP',
          type:'POST',
@@ -42,6 +41,7 @@ $('#divEPKind').hide();
             init_addEpMoal();
             $btn.button('reset');
             $('#btn_addEpMoal_Close').click();  // modal 닫기
+            location.reload();
           }
         });
       });
