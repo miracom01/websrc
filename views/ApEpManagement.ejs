@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+  <script src="../Scripts/ApEpManagement.js"></script>
   <style>
     /* Remove the navbar's default rounded borders and increase the bottom margin */
     .navbar {
@@ -60,143 +63,50 @@
     </div>
   </nav>
 
-<div class="container">
+
+
+<!-- 본문 시작 -->
+<div class="container" style="width: 100%;">
   <div class="row">
-    <div class="col-sm-3">
-      <div class="panel panel-primary">
-        <div class="panel-heading table-responsive" style="padding:5px 5px 5px 10px">
-          <table style="width:100%">
-            <tr>
-              <td width="*" style="align:left;">ApEpManagement TestPage/td>
-              <td width="32px" style="align:right;"><img src="/images/edit.png" class="img-responsive" style="width:32px;height:32px;" alt="Image"></td>
-            </tr>
-          </table>
-        </div>
-        <div class="panel-body table-responsive">
-          <table style="width:100%">
-            <tr>
-              <td style="width:60%; align:center;">
-                <img src="/images/television.ico" class="img-responsive" style="width:64px; height:64px" alt="Image">
-              </td>
-              <td style="width:40%">
-                <table class="table">
-                  <tr>
-                    <th class="success">기기상태</th>
-                  </tr>
-                  <tr>
-                    <td align="center">양호</td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-          <br>
-          <table class="table">
-            <tr>
-              <th>전월사용량</th>
-              <th>당월사용량</th>
-            </tr>
-            <tr>
-              <td>135</td>
-              <td>100</td>
-            </tr>
-          </table>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">* 전월 누적 사용량</div>
-          <div class="panel-body">Panel Content</div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">* 당월 누적 사용량</div>
-          <div class="panel-body">Panel Content</div>
-        </div>
-        <!--<div class="panel-footer">Buy 50 mobiles and get a gift card</div>-->
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="panel panel-primary">
-        <div class="panel-heading table-responsive" style="padding:5px 5px 5px 10px">
-          <table style="width:100%">
-            <tr>
-              <td width="*" style="align:left;">다용도실 세탁기</td>
-              <td width="32px" style="align:right;"><img src="/images/edit.png" class="img-responsive" style="width:32px;height:32px;" alt="Image"></td>
-            </tr>
-          </table>
-        </div>
-        <div class="panel-body table-responsive">
-          <table style="width:100%">
-            <tr>
-              <td align="center">
-                <img src="/images/washing-machine.ico" class="img-responsive" style="width:128px;height:128px" alt="Image">
-              </td>
-            </tr>
-          </table>
-        </div>
-        <br>
-        <div class="panel panel-default">
-          <div class="panel-heading">* 전월 누적 사용량</div>
-          <div class="panel-body">Panel Content</div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">* 당월 누적 사용량</div>
-          <div class="panel-body">Panel Content</div>
-        </div>
-        <!--<div class="panel-footer">Buy 50 mobiles and get a gift card</div>-->
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="panel panel-primary">
-        <div class="panel-heading table-responsive" style="padding:5px 5px 5px 10px">
-          <table style="width:100%">
-            <tr>
-              <td width="*" style="align:left;">다용도실 세탁기</td>
-              <td width="32px" style="align:right;"><img src="/images/edit.png" class="img-responsive" style="width:32px;height:32px;" alt="Image"></td>
-            </tr>
-          </table>
-        </div>
-        <div class="panel-body table-responsive" ><img src="/images/washing-machine.ico" class="img-responsive" style="width:64px;height:64px" alt="Image"></div>
-        <!--<div class="panel-footer">Buy 50 mobiles and get a gift card</div>-->
-        <div class="panel panel-default">
-          <div class="panel-heading">* 전월 누적 사용량</div>
-          <div class="panel-body">Panel Content</div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">* 당월 누적 사용량</div>
-          <div class="panel-body">Panel Content</div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="well">
-       <h4>Lee Youngmin's Home</h4>
-       <div class="panel panel-default">
-         <div class="panel-heading">* 전월 누적 사용량</div>
-         <div class="panel-body">Panel Content</div>
-       </div>
-       <div class="panel panel-default">
-         <div class="panel-heading">* 당월 누적 사용량</div>
-         <div class="panel-body">Panel Content</div>
-       </div>
-       <p>Some text..</p>
-       <p>Some text..</p>
-      </div>
-    </div>
+    <div class="col-lg-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="이름 검색" id="txtSearchString" id="txtSearchString">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" id="btnSearch" name ="btnSearch">Go!</button>
+        </span>
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+  </div><!-- /.row -->
+
+<div class="row">
+  <div class="col-lg-4">
+    <table class="table table-hover" cellspacing="0" width="100%">
+        <th>이름</th>
+        <th> ID </th>
+    </table>
+    <table id="TbMemberList"  class="table table-hover" cellspacing="0" width="100%">
+    </table>
+    <nav aria-label="Page navigation">
+      <ul class="pagination" id="memListPagenation" name="memListPagenation">
+      </ul>
+    </nav>
+  </div><!-- /.col-lg-6 -->
+
+  <div class="col-lg-7">
+    <table class="table table-hover" cellspacing="0" width="100%">
+        <th>Serial No</th>
+        <th> 장비구분 </th>
+        <th>AP Serial No</th>
+        <th> 기기종류 </th>
+    </table>
+    <table id="TbDeviceList"  class="table table-hover" cellspacing="0" width="100%">
+    </table>
+    <nav aria-label="Page navigation">
+      <ul class="pagination" id="DevListPagenation" name="DevListPagenation">
+      </ul>
+    </nav>
   </div>
-    <!--<div class="col-sm-4" style="align:center">
-      <div class="panel panel-success">
-        <div class="panel-heading">BLACK FRIDAY DEAL</div>
-        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-      </div>
-    </div>-->
-
-</div><br>
-
-<div class="container">
-  <div class="row">
-
-  </div>
-</div><br><br>
+</div>
 
 <footer class="container-fluid text-center">
   <p>Miracom InC.</p>
