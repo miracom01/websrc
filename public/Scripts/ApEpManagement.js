@@ -63,7 +63,7 @@ function drawDevTable(data,pageSize){
 
   $("#TbDeviceList > tbody tr").remove("");
  for(var i=0; i<tableList.length; i++){
-   $('#TbDeviceList  > tbody').append( "<tr><td>"+tableList[i].SERIAL_NO+"</td><td>"+tableList[i].EQ_GBN+"</td><td>"+tableList[i].AP_SN+"</td><td>"+tableList[i].TGT_APPLIANCE_NAME_KOR+"</td></tr>" );
+   $('#TbDeviceList  > tbody').append( "<tr><td>"+tableList[i].EQ_USER_ID+"</td><td>"+tableList[i].SERIAL_NO+"</td><td>"+tableList[i].EQ_GBN+"</td><td>"+tableList[i].AP_SN+"</td><td>"+tableList[i].TGT_APPLIANCE_NAME_KOR+"</td></tr>" );
  }
  var total_cnt = parseInt(data.total_cnt[0].CNT/pageSize) + (data.total_cnt[0].CNT % pageSize>0?1:0);
  $("#DevListPagenation li").remove();
