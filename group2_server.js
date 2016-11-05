@@ -67,6 +67,7 @@ app.get('/',function(req,res){
 app.get('/main',function(req,res){
   var userid = req.session.user_id;
   var deviceInfo = null;
+  var myAPSNInfo = null;
   var applianceInfo = null;
   var sql = " SELECT CODE, CODE_NAME, DESCRIPTION, RESERVED1, RESERVED2 FROM TB_COMMCODE "
   sql += " WHERE P_CODE='HOMEAPP' "
@@ -81,7 +82,16 @@ app.get('/main',function(req,res){
     }
   });
 
-
+  sql = " SELECT SERIAL_NO FROM TB_EQUIP_MASTER WHERE EQ_USER_ID = ? AND EQ_GBN = 'AP' ";
+  conn.query(sql, userid , function(err, results){
+    if(err){
+      console.log("[getUSERAPInfo(fail)] " + userid );
+      console.log(err);
+      res.status(500).send();
+    } else {
+      myAPSNInfo =  results;
+    }
+  });
 
   sql = " SELECT MAST.EQ_NO, SERIAL_NO, EQ_GBN, AP_NO, IFNULL(CODE_NAME,'AP') TGT_APPLIANCE_NAME_ENG, IFNULL(DESCRIPTION,'AP') TGT_APPLIANCE_NAME_KOR, IFNULL(RESERVED1,'antenna.png') ICON_NM, C_YYYYMMDD, C_HHMISS, C_SIGNAL ";
   sql +=  " FROM ";
@@ -111,7 +121,8 @@ app.get('/main',function(req,res){
            "userId": req.session.user_id,
            "displayUserName" : req.session.user_name,
            "deviceInfo": results,
-           "applianceInfo":applianceInfo
+           "applianceInfo":applianceInfo,
+           "myAPSNInfo": myAPSNInfo
        });
     }
   });

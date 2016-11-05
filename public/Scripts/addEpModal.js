@@ -131,3 +131,7 @@ function changeEPKind(name,code){
   $('txtEPKind').val(code);
   $('#ddlEPKind').html(name +' <span class="caret"></span>');
 }
+
+function selectedMyApSN(sn){
+  $('#txt_addEpModal_ApSN').val(sn);
+}
