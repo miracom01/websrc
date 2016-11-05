@@ -17,7 +17,7 @@ $(document).ready(function(){
       $("#region2").html(str);
     }
   });
-  
+
   $("#region1").change(function(){
     $.ajax({
       url: "/members/getRegion2ByAjax",
@@ -82,14 +82,14 @@ $(document).ready(function(){
     <div class="form-group">
       <label class="control-label col-sm-3" for="email">Sex / Age : </label>
       <div class="dropdown col-sm-2">
-        <select style="width:150px">
+        <select id="sex" style="width:150px">
           <option value="" selected>Select Sex</option>
           <option value="M">Male</option>
           <option value="F">Female</option>
         </select>
 		  </div>
 		  <div class="dropdown col-sm-2" >
-        <select style="width:150px">
+        <select id="age" style="width:150px">
           <option value="" selected>Select Age</option>
           <option value="0">0 to 9</option>
           <option value="10">10 to 19</option>

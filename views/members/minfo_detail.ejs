@@ -3,32 +3,82 @@
 <% include ../header.ejs %>
 <script>
 $(document).ready(function(){
+  //가구 구성원 정보
+  $.ajax({
+    url: "/members/getMemberGbnByAjax",
+    success: function(result){
+      var oinfo = result.oinfo;
+      var str="";
+      for(var i=0; i < oinfo.length; i++) {
+        if (oinfo[i].CODE == '<%=minfo.home_mem_gbn%>'){
+          str += "<option value='"+oinfo[i].CODE+"' selected>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
+        } else {
+          str += "<option value='"+oinfo[i].CODE+"'>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
+        }
+      }
+      $("#home_mem_gbn").html(str);
+    }
+  });
+  //나이대 정보
+  $.ajax({
+    url: "/members/getAgeByAjax",
+    success: function(result){
+      var oinfo = result.oinfo;
+      var str="";
+      for(var i=0; i < oinfo.length; i++) {
+        if (oinfo[i].CODE == '<%=minfo.user_years%>') {
+          str += "<option value='"+oinfo[i].CODE+"' selected>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
+        } else {
+          str += "<option value='"+oinfo[i].CODE+"'>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
+        }
+      }
+      $("#age").html(str);
+    }
+  });
+
+  $.ajax({
+    url: "/members/getRegionByAjax",
+    success: function(result){
+      var oinfo = result.reg1Info;
+      var str="";
+      for(var i=0; i < oinfo.length; i++) {
+        if (oinfo[i].CODE == '<%=minfo.region1%>') {
+          str += "<option value='"+oinfo[i].CODE+"' selected>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
+        } else {
+          str += "<option value='"+oinfo[i].CODE+"'>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
+        }
+      }
+      $("#region1").html(str);
+    }
+  });
+
   $.ajax({
     url: "/members/getRegion2ByAjax",
-    data: {region1: $('#region1 option:selected').val()},
+    data: {region1: '<%=minfo.region1%>'},
     success: function(result){
-      alert(JSON.stringify(result));
-      var rinfo = result.reg2Info;
-      var str;
-      for(var i=0; i < rinfo.length; i++) {
-        str += "<option value='"+rinfo[i].CODE+"'>"+rinfo[i].DESCRIPTION+"("+rinfo[i].CODE_NAME+")</option>";
-        //alert(rinfo[i].CODE+" "+rinfo[i].CODE_NAME);
+      var oinfo = result.reg2Info;
+      var str="";
+      for(var i=0; i < oinfo.length; i++) {
+        if (oinfo[i].CODE == '<%=minfo.region2%>') {
+          str += "<option value='"+oinfo[i].CODE+"' selected>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
+        } else {
+          str += "<option value='"+oinfo[i].CODE+"'>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
+        }
       }
       $("#region2").html(str);
     }
   });
 
+  //region1별 세부 region2정보
   $("#region1").change(function(){
     $.ajax({
       url: "/members/getRegion2ByAjax",
       data: {region1: $('#region1 option:selected').val()},
       success: function(result){
-        //alert(JSON.stringify(result));
-        var rinfo = result.reg2Info;
-        var str;
-        for(var i=0; i < rinfo.length; i++) {
-          str += "<option value='"+rinfo[i].CODE+"'>"+rinfo[i].DESCRIPTION+"("+rinfo[i].CODE_NAME+")</option>";
-          //alert(rinfo[i].CODE+" "+rinfo[i].CODE_NAME);
+        var oinfo = result.reg2Info;
+        var str="";
+        for(var i=0; i < oinfo.length; i++) {
+          str += "<option value='"+oinfo[i].CODE+"'>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
         }
         $("#region2").html(str);
       }
@@ -40,7 +90,7 @@ $(document).ready(function(){
 <div class="container dotted">
   <h2 class="underline">Register Member</h2>
   <br>
-  <form class="form-horizontal" method="post">
+  <form class="form-horizontal" method="post" action="/members/minfo_update">
     <div class="form-group">
       <label class="control-label col-sm-3" for="username">User ID : </label>
       <div class="col-sm-9">
@@ -64,47 +114,34 @@ $(document).ready(function(){
     <div class="form-group">
       <label class="control-label col-sm-3" for="email">Region : </label>
       <div id="select_box" class="dropdown col-sm-2">
-        <select id="region1" style="width:130px">
-          <%for(var a = 0; a < 1; a++) {%>
-          <option value="SL">Seoul</option>
-          <option value="GG">GyoungGi</option>
-          <option value="GW">GangWon</option>
-          <%}%>
-        </select>
+        <select id="region1" name="region1" style="width:150px"></select>
 	    </div>
 	    <div class="dropdown col-sm-2">
-		    <select id="region2" style="width:250px">
-          <option value="">서울</option>
-          <option value="">경기</option>
-          <option value="">강원</option>
-        </select>
+		    <select id="region2" name="region2" style="width:250px"></select>
 		  </div>
 		  <div class="dropdown col-sm-4"></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-3" for="email">Sex / Age : </label>
+      <label class="control-label col-sm-3" for="sex">Sex / Age : </label>
       <div class="dropdown col-sm-2">
-        <select style="width:150px">
-          <option value="" selected>Select Sex</option>
+        <select id="sex" name="sex" style="width:100px">
           <option value="M">Male</option>
           <option value="F">Female</option>
         </select>
 		  </div>
 		  <div class="dropdown col-sm-2" >
-        <select style="width:150px">
-          <option value="" selected>Select Age</option>
-          <option value="AG001">0 to 9</option>
-          <option value="AG002">10 to 19</option>
-          <option value="AG003">20 to 29</option>
-          <option value="AG004">30 to 39</option>
-          <option value="AG005">40 to 49</option>
-          <option value="AG006">50 to 59</option>
-          <option value="AG007">60 to 69</option>
-          <option value="AG008">over 70</option>
-        </select>
+        <select id="age" name="age" style="width:160px"></select>
 		    </ul>
 		  </div>
 		  <div class="col-sm-5"></div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="sex">Member of Home : </label>
+      <div class="dropdown col-sm-2">
+        <select id="home_mem_gbn" name="home_mem_gbn" style="width:150px"></select>
+		  </div>
+		  <div class="col-sm-7"></div>
     </div>
 
 
@@ -117,8 +154,7 @@ $(document).ready(function(){
     </div>
     <div class="form-group">
       <div class="col-sm-offset-11">
-        <!--<button type="submit" class="btn btn-default">Submit</button>-->
-        <button type="submit" class="btn btn-info btn-md"><span class="glyphicon glyphicon-ok"></span> Submit</button>
+        <button type="submit" class="btn btn-info btn-md"><span class="glyphicon glyphicon-ok"></span> Update</button>
       </div>
     </div>
 
