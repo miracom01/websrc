@@ -3,7 +3,7 @@
 $(document).ready(function(){
 
    var buttonInterval = setInterval(function(){ callStatus();}, 5000);
-   var mainInterval = setInterval(function(){ mainReflash();}, 3000);
+   var mainInterval = setInterval(function(){ mainReflash();}, 5000);
 
   $('button[name="btn_on"]').on('click',function(){
     var $btn = $(this).button('loading');
@@ -67,6 +67,7 @@ function mainReflash(){
     var yyyymm = ""+nowdate.getFullYear()+lpad((nowdate.getMonth()+1),2,'0');
     var yyyymmdd = ""+nowdate.getFullYear()+lpad((nowdate.getMonth()+1),2,'0')+ lpad(nowdate.getDate().toString(),2,'0');
     var lastmonth = ""+nowdate.getFullYear()+lpad((nowdate.getMonth()),2,'0');
+    var user_id = '';
 
 
     if(EqSN.indexOf('AP')<0){
@@ -89,7 +90,7 @@ function mainReflash(){
            if(data.length>0){
               $(item).find('[id="dailyUsed"]').html(data[0].SUM_VALUE.toFixed(2));
            }else{
-              $(item).find('[id="dailyUsed"]').html('checking...');
+              $(item).find('[id="dailyUsed"]').html('Checking..');
            }
          }
        });
@@ -103,7 +104,7 @@ function mainReflash(){
             if(data.length>0){
                $(item).find('[id="thisMonthAmountUsed"]').html(data[0].SUM_VALUE.toFixed(2));
             }else{
-               $(item).find('[id="thisMonthAmountUsed"]').html('checking...');
+               $(item).find('[id="thisMonthAmountUsed"]').html('Checking..');
             }
           }
         });
@@ -117,10 +118,38 @@ function mainReflash(){
              if(data.length>0){
                 $(item).find('[id="lastMonthAmountUsed"]').html(data[0].SUM_VALUE.toFixed(2));
              }else{
-                $(item).find('[id="lastMonthAmountUsed"]').html('checking...');
+                $(item).find('[id="lastMonthAmountUsed"]').html('Checking..');
              }
            }
          });
+
+         //유저별 당월 사용량
+         $.ajax({
+           url:'/sapi/getElectricSumOnUser',
+           type:'GET',
+            data:{user_id:user_id,yyyymm:yyyymm},
+            success:function(data){
+              if(data.length>0){
+                 $('#thisMonth_progress').html(data[0].SUM_VALUE.toFixed(2));
+              }else{
+                 $('#thisMonth_progress').html('Checking..');
+              }
+            }
+          });
+
+         //유저별 전월 사용량
+         $.ajax({
+           url:'/sapi/getElectricSumOnUser',
+           type:'GET',
+            data:{user_id:user_id,yyyymm:lastmonth},
+            success:function(data){
+              if(data.length>0){
+                 $('#lastMonth_progress').html(data[0].SUM_VALUE.toFixed(2));
+              }else{
+                 $('#lastMonth_progress').html('Checking..');
+              }
+            }
+          });
 
 
     }
