@@ -32,7 +32,7 @@ $(document).ready(function(){
         }
       });
     });
-});
+}); 
 
 function callStatus(){
   $('button[name="btn_on"]').each(function(index,item){
