@@ -84,14 +84,14 @@ module.exports = function(app) {
   //5) EP별 해당월의 전력사용량 합 조회 (Mobile)
   route.get('/getElectricSumForMonth',function(req,res) {
     var eq_no = req.query.eq_no;
-    var m_yyyymmdd = req.query.yyyymm+'%';
-    //console.log(eq_no,m_yyyymmdd);
+    var yyyymm = req.query.yyyymm+'%';
+    //console.log(eq_no,yyyymm);
     var sql = `
       SELECT EQ_NO, SUBSTR(M_YYYYMMDD,1,6) YYYYMM, SUM(M_VALUE) AS SUM_VALUE
       FROM TB_EQ_VOLT_MEASURE
       WHERE EQ_NO = ? AND M_YYYYMMDD LIKE ?
       GROUP BY EQ_NO,SUBSTR(M_YYYYMMDD,1,6)`;
-    conn.query(sql, [eq_no, m_yyyymmdd], function(err, results){
+    conn.query(sql, [eq_no, yyyymm], function(err, results){
       if(err){
         console.log(err);
         res.send({'result': false, 'errCode': err.errCode});
@@ -105,14 +105,14 @@ module.exports = function(app) {
   //6) EP별 해당월의 일별 전력사용량 목록 조회 (Mobile)
   route.get('/getEverydayForMonth',function(req,res) {
     var eq_no = req.query.eq_no;
-    var m_yyyymmdd = req.query.yyyymm+'%';
-    //console.log(eq_no,m_yyyymmdd);
+    var yyyymm = req.query.yyyymm+'%';
+    //console.log(eq_no,yyyymm);
     var sql = `
       SELECT EQ_NO, M_YYYYMMDD AS YYYYMMDD, SUM(M_VALUE) AS SUM_VALUE
       FROM TB_EQ_VOLT_MEASURE
       WHERE EQ_NO = ? AND M_YYYYMMDD LIKE ?
       GROUP BY EQ_NO, M_YYYYMMDD`;
-    conn.query(sql, [eq_no, m_yyyymmdd], function(err, results){
+    conn.query(sql, [eq_no, yyyymm], function(err, results){
       if(err){
         console.log(err);
         res.send({'result': false, 'errCode': err.errCode});
