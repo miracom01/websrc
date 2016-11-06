@@ -154,11 +154,11 @@ module.exports = function(app) {
     var yyyymm = req.query.yyyymm+'%';
     //console.log(eq_no,yyyymm);
     var sql = `
-      SELECT EQ_NO, SUBSTR(M_YYYYMMDD,1,6) YYYYMM, SUM(M_VALUE) AS SUM_VALUE
+      SELECT SUBSTR(M_YYYYMMDD,1,6) YYYYMM, SUM(M_VALUE) AS SUM_VALUE
       FROM TB_EQ_VOLT_MEASURE
       WHERE EQ_NO IN (select EQ_NO from TB_EQUIP_MASTER
       where eq_user_id = ? and eq_gbn = 'EP') AND M_YYYYMMDD LIKE ?
-      GROUP BY EQ_NO,SUBSTR(M_YYYYMMDD,1,6)`;
+      GROUP BY SUBSTR(M_YYYYMMDD,1,6)`;
     conn.query(sql, [user_id, yyyymm], function(err, results){
       if(err){
         console.log(err);
