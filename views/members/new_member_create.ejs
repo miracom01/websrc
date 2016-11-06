@@ -3,32 +3,69 @@
 <% include ../common.ejs %>
 <script>
 $(document).ready(function(){
+  //가구 구성원 정보
+  $.ajax({
+    url: "/members/getMemberGbnByAjax",
+    success: function(result){
+      var oinfo = result.oinfo;
+      var str="";
+      for(var i=0; i < oinfo.length; i++) {
+        str += "<option value='"+oinfo[i].CODE+"'>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
+      }
+      $("#home_mem_gbn").html(str);
+    }
+  });
+  //나이대 정보
+  $.ajax({
+    url: "/members/getAgeByAjax",
+    success: function(result){
+      var oinfo = result.oinfo;
+      var str="";
+      for(var i=0; i < oinfo.length; i++) {
+        str += "<option value='"+oinfo[i].CODE+"'>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
+      }
+      $("#age").html(str);
+    }
+  });
+
+  $.ajax({
+    url: "/members/getRegionByAjax",
+    success: function(result){
+      //alert(JSON.stringify(result));
+      var rinfo = result.reg1Info;
+      var str;
+      for(var i=0; i < rinfo.length; i++) {
+        str += "<option value='"+rinfo[i].CODE+"'>"+rinfo[i].DESCRIPTION+"("+rinfo[i].CODE_NAME+")</option>";
+      }
+      $("#region1").html(str);
+    }
+  });
+
   $.ajax({
     url: "/members/getRegion2ByAjax",
-    data: {region1: $('#region1 option:selected').val()},
+    data: {region1: 'SL'},
     success: function(result){
       //alert(JSON.stringify(result));
       var rinfo = result.reg2Info;
       var str;
       for(var i=0; i < rinfo.length; i++) {
         str += "<option value='"+rinfo[i].CODE+"'>"+rinfo[i].DESCRIPTION+"("+rinfo[i].CODE_NAME+")</option>";
-        //alert(rinfo[i].CODE+" "+rinfo[i].CODE_NAME);
       }
       $("#region2").html(str);
     }
   });
 
   $("#region1").change(function(){
+    var aa = $("#region1 option:selected").val();
     $.ajax({
       url: "/members/getRegion2ByAjax",
-      data: {region1: $('#region1 option:selected').val()},
+      //data: {region1: $('#region option:selected').val()},
+      data: {region1: aa},
       success: function(result){
-        //alert(JSON.stringify(result));
         var rinfo = result.reg2Info;
         var str;
         for(var i=0; i < rinfo.length; i++) {
           str += "<option value='"+rinfo[i].CODE+"'>"+rinfo[i].DESCRIPTION+"("+rinfo[i].CODE_NAME+")</option>";
-          //alert(rinfo[i].CODE+" "+rinfo[i].CODE_NAME);
         }
         $("#region2").html(str);
       }
@@ -41,10 +78,10 @@ $(document).ready(function(){
       data: {user_id: $('#username').val()},
       success: function(result){
         if (result) {
-          alert('your Id that have been inputed is OK');
+          alert('User id is Valid');
           $('#check_valid').val("Y");
         }else {
-          alert('your Id that have been inputed is not valid');
+          alert('User id is NOT Valid');
           $('#check_valid').val("N");
         }
       }
@@ -54,16 +91,43 @@ $(document).ready(function(){
 
 function validation() {
 
+  if($('#username').val() == '')  {
+    alert('User Id is empty.');
+    return false;
+  }
+
   if($('#password').val() == '')  {
     alert('password is empty.');
     return false;
   }
+
   if($('#username').val() == '')  {
-    alert('username is empty.');
+    alert('User Id is empty.');
     return false;
   }
+
   if($('#password').val() == '')  {
-    alert('username is empty.');
+    alert('password is empty.');
+    return false;
+  }
+
+  if($('#sex').val() == '')  {
+    alert('Sex is empty.');
+    return false;
+  }
+
+  if($('#age').val() == '')  {
+    alert('Age is empty.');
+    return false;
+  }
+
+  if($('#home_mem_gbn').val() == '')  {
+    alert('Member of Home is empty.');
+    return false;
+  }
+
+  if($('#check_valid').val() != 'Y')  {
+    alert('User id`s validation is not executed. please click Validate button');
     return false;
   }
   return true;
@@ -99,63 +163,35 @@ function validation() {
     </div>
     <div class="form-group">
       <label class="control-label col-sm-3" for="email">Region : </label>
-      <div id="region1" class="dropdown col-sm-2">
-        <select style="width:150px">
-          <option value="SL">Seoul</option>
-          <option value="GG">GyoungGi</option>
-          <option value="GW">GangWon</option>
-        </select>
+      <div class="dropdown col-sm-2">
+        <select id="region1" name="region1" style="width:150px"></select>
 	    </div>
 	    <div class="dropdown col-sm-2">
-		    <select id="region2" style="width:150px">
-          <option value="">서울</option>
-          <option value="">경기</option>
-          <option value="">강원</option>
-        </select>
+		    <select id="region2" name="region2" style="width:150px"></select>
 		  </div>
 		  <div class="dropdown col-sm-4"></div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-3" for="email">Sex / Age : </label>
       <div class="dropdown col-sm-2">
-        <select id="sex" style="width:150px">
-          <option value="" selected>Select Sex</option>
+        <select id="sex" name="sex" style="width:100px">
           <option value="M">Male</option>
           <option value="F">Female</option>
         </select>
 		  </div>
 		  <div class="dropdown col-sm-2" >
-        <select id="age" style="width:150px">
-          <option value="" selected>Select Age</option>
-          <option value="0">0 to 9</option>
-          <option value="10">10 to 19</option>
-          <option value="20">20 to 29</option>
-          <option value="30">30 to 39</option>
-          <option value="40">40 to 49</option>
-          <option value="50">50 to 59</option>
-          <option value="60">over 60</option>
-        </select>
-		    <!--<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">select Age&nbsp;&nbsp;&nbsp;<span class="caret"></span></button>
-		    <ul class="dropdown-menu">
-		      <li><a href="#">0 to 9</a></li>
-		      <li><a href="#">10 to 19</a></li>
-		      <li><a href="#">20 to 29</a></li>
-		      <li><a href="#">30 to 39</a></li>
-		      <li><a href="#">40 to 49</a></li>
-		      <li><a href="#">50 to 59</a></li>
-		      <li><a href="#">over 60</a></li>-->
-		    </ul>
+        <select id="age" name="age" style="width:150px"></select>
 		  </div>
 		  <div class="col-sm-5"></div>
     </div>
 
 
     <div class="form-group">
-      <div class="col-sm-offset-3 col-sm-9">
-        <div class="checkbox">
-          <label><input type="checkbox"> Remember me</label>
-        </div>
-      </div>
+      <label class="control-label col-sm-3" for="sex">Member of Home : </label>
+      <div class="dropdown col-sm-2">
+        <select id="home_mem_gbn" name="home_mem_gbn" style="width:150px"></select>
+		  </div>
+		  <div class="col-sm-7"></div>
     </div>
     <div class="form-group">
       <div class="col-sm-offset-11">

@@ -52,7 +52,24 @@ $(document).ready(function(){
     }
   });
 
-  
+  $.ajax({
+    url: "/members/getRegion2ByAjax",
+    data: {region1: '<%=minfo.region1%>'},
+    success: function(result){
+      var oinfo = result.reg2Info;
+      var str="";
+      for(var i=0; i < oinfo.length; i++) {
+        if (oinfo[i].CODE == '<%=minfo.region2%>') {
+          str += "<option value='"+oinfo[i].CODE+"' selected>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
+        } else {
+          str += "<option value='"+oinfo[i].CODE+"'>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
+        }
+      }
+      $("#region2").html(str);
+    }
+  });
+
+
   //region1별 세부 region2정보
   $("#region1").change(function(){
     $.ajax({
@@ -68,6 +85,7 @@ $(document).ready(function(){
       }
     });
   });
+
 });
 </script>
 
@@ -111,8 +129,8 @@ $(document).ready(function(){
       <label class="control-label col-sm-3" for="sex">Sex / Age : </label>
       <div class="dropdown col-sm-2">
         <select id="sex" name="sex" style="width:100px">
-          <option value="M">Male</option>
-          <option value="F">Female</option>
+          <option value="M" <%if(minfo.user_sex == 'M'){%>selected<%}%>>Male</option>
+          <option value="F" <%if(minfo.user_sex == 'F'){%>selected<%}%>>Female</option>
         </select>
 		  </div>
 		  <div class="dropdown col-sm-2" >
