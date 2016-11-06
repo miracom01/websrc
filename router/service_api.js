@@ -16,7 +16,7 @@ module.exports = function(app) {
     conn.query(sql, data, function(err, results){
       if(err){
         console.log(err);
-        res.send({'result':false, 'errCode': err.errCode});
+        res.send({'result':false, 'errCode': err.code});
       }else {
         console.log(JSON.stringify(results));
         res.send(results);
@@ -37,7 +37,7 @@ module.exports = function(app) {
     conn.query(sql, [fin_yn, eq_no, c_yyyymmdd, c_hhmiss, c_signal], function(err, results){
       if(err){
         console.log(err);
-        res.send({'result': false, 'errCode': err.errCode});
+        res.send({'result': false, 'errCode': err.code});
       }else {
         console.log(JSON.stringify(results));
         res.send(results);
@@ -52,7 +52,7 @@ module.exports = function(app) {
     conn.query(sql, [eq_no], function(err, results){
       if(err){
         console.log(err);
-        res.send({'result': false, 'errCode': err.errCode});
+        res.send({'result': false, 'errCode': err.code});
       }else {
         console.log(JSON.stringify(results));
         res.send(results);
@@ -71,6 +71,48 @@ module.exports = function(app) {
     //console.log(signalInfo);
     var sql = 'INSERT INTO TB_EQ_CTRL_SIGNAL SET ?';
     conn.query(sql, signalInfo, function(err, results){
+      if(err){
+        console.log(err);
+        res.send({'result': false, 'errCode': err.code});
+      }else{
+        console.log(JSON.stringify(results));
+        res.send(results);
+      }
+    });
+  });
+
+  //5) EP별 해당월의 전력사용량 합 조회 (Mobile)
+  route.get('/getElectricSumForMonth',function(req,res) {
+    var eq_no = req.query.eq_no;
+    var m_yyyymmdd = req.query.yyyymm+'%';
+    //console.log(eq_no,m_yyyymmdd);
+    var sql = `
+      SELECT EQ_NO, SUBSTR(M_YYYYMMDD,1,6) YYYYMM, SUM(M_VALUE) AS SUM_VALUE
+      FROM TB_EQ_VOLT_MEASURE
+      WHERE EQ_NO = ? AND M_YYYYMMDD LIKE ?
+      GROUP BY EQ_NO,SUBSTR(M_YYYYMMDD,1,6)`;
+    conn.query(sql, [eq_no, m_yyyymmdd], function(err, results){
+      if(err){
+        console.log(err);
+        res.send({'result': false, 'errCode': err.errCode});
+      }else{
+        console.log(JSON.stringify(results));
+        res.send(results);
+      }
+    });
+  });
+
+  //6) EP별 해당월의 일별 전력사용량 목록 조회 (Mobile)
+  route.get('/getEverydayForMonth',function(req,res) {
+    var eq_no = req.query.eq_no;
+    var m_yyyymmdd = req.query.yyyymm+'%';
+    //console.log(eq_no,m_yyyymmdd);
+    var sql = `
+      SELECT EQ_NO, M_YYYYMMDD AS YYYYMMDD, SUM(M_VALUE) AS SUM_VALUE
+      FROM TB_EQ_VOLT_MEASURE
+      WHERE EQ_NO = ? AND M_YYYYMMDD LIKE ?
+      GROUP BY EQ_NO, M_YYYYMMDD`;
+    conn.query(sql, [eq_no, m_yyyymmdd], function(err, results){
       if(err){
         console.log(err);
         res.send({'result': false, 'errCode': err.errCode});
