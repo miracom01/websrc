@@ -52,23 +52,7 @@ $(document).ready(function(){
     }
   });
 
-  $.ajax({
-    url: "/members/getRegion2ByAjax",
-    data: {region1: '<%=minfo.region1%>'},
-    success: function(result){
-      var oinfo = result.reg2Info;
-      var str="";
-      for(var i=0; i < oinfo.length; i++) {
-        if (oinfo[i].CODE == '<%=minfo.region2%>') {
-          str += "<option value='"+oinfo[i].CODE+"' selected>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
-        } else {
-          str += "<option value='"+oinfo[i].CODE+"'>"+oinfo[i].DESCRIPTION+"("+oinfo[i].CODE_NAME+")</option>";
-        }
-      }
-      $("#region2").html(str);
-    }
-  });
-
+  
   //region1별 세부 region2정보
   $("#region1").change(function(){
     $.ajax({
@@ -91,14 +75,13 @@ $(document).ready(function(){
 <% include ../header.ejs %>
 <!--본문 시작-->
 <div class="container dotted">
-  <h2 class="underline">Register Member</h2>
+  <h2 class="underline">Update Member</h2>
   <br>
   <form class="form-horizontal" method="post" action="/members/minfo_update">
     <div class="form-group">
       <label class="control-label col-sm-3" for="username">User ID : </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" name="username" id="username" placeholder="Enter your ID or email-address" readonly value="<%=minfo.user_id%>">
-        <button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search"></span> Validate</button>
       </div>
 
     </div>
@@ -147,14 +130,6 @@ $(document).ready(function(){
 		  <div class="col-sm-7"></div>
     </div>
 
-
-    <div class="form-group">
-      <div class="col-sm-offset-3 col-sm-9">
-        <div class="checkbox">
-          <label><input type="checkbox"> Remember me</label>
-        </div>
-      </div>
-    </div>
     <div class="form-group">
       <div class="col-sm-offset-11">
         <button type="submit" class="btn btn-info btn-md"><span class="glyphicon glyphicon-ok"></span> Update</button>

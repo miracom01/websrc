@@ -7,12 +7,14 @@ module.exports = function(app) {
 
   route.get('/ApEpManagement',function(req,res){
     res.render('ApEpManagement', {
+            nPos: 2,
             userId: req.session.user_id,
             displayUserName : req.session.user_name});
   });
 
   route.get('/ApEpStatistics',function(req,res){
     res.render('Statistics/Statistics', {
+            nPos: 3,
             userId: req.session.user_id,
             displayUserName : req.session.user_name});
   });

@@ -37,17 +37,16 @@ $(document).ready(function(){
 
   $("#validateID").click(function(){
     $.ajax({
-      url: "/members/getRegion2ByAjax",
-      data: {region1: $('#region1 option:selected').val()},
+      url: "/members/validateIdByAjax",
+      data: {user_id: $('#username').val()},
       success: function(result){
-        //alert(JSON.stringify(result));
-        var rinfo = result.reg2Info;
-        var str;
-        for(var i=0; i < rinfo.length; i++) {
-          str += "<option value='"+rinfo[i].CODE+"'>"+rinfo[i].DESCRIPTION+"("+rinfo[i].CODE_NAME+")</option>";
-          //alert(rinfo[i].CODE+" "+rinfo[i].CODE_NAME);
+        if (result) {
+          alert('your Id that have been inputed is OK');
+          $('#check_valid').val("Y");
+        }else {
+          alert('your Id that have been inputed is not valid');
+          $('#check_valid').val("N");
         }
-        $("#region2").html(str);
       }
     });
   });
@@ -55,12 +54,22 @@ $(document).ready(function(){
 });
 
 function validation() {
+
+  if($('#password').val() == '')  {
+    alert('password is empty.');
+    return false;
+  }
+  if($('#username').val() == '')  {
+    alert('username is empty.');
+    return false;
+  }
+  if($('#password').val() == '')  {
+    alert('username is empty.');
+    return false;
+  }
   return true;
 }
 
-function validateID() {
-
-}
 
 </script>
 <body>

@@ -16,8 +16,8 @@ module.exports = function(app) {
         salt: salt,
         region1: req.body.region1,
         region2: req.body.region2,
-        sex: req.body.sex,
-        age: req.body.age,
+        user_sex: req.body.sex,
+        user_years: req.body.age,
         home_mem_gbn: req.body.home_mem_gbn
       };
       var sql = 'INSERT INTO TB_USER_MASTER SET ?';
@@ -109,6 +109,7 @@ module.exports = function(app) {
         res.render('members/minfo_detail',
           {
             minfo: minfo,
+            nPos: 1,
             userId: req.session.user_id,
             displayUserName : req.session.user_name
           });
@@ -116,9 +117,31 @@ module.exports = function(app) {
     });
   });
 
+  route.get('/validateIdByAjax', function(req,res){
+    console.log(req.query.user_id);
+    var sql = "SELECT USER_ID as user_id FROM TB_USER_MASTER WHERE USER_ID = ?";
+    //console.log(sql);
+    conn.query(sql, [req.query.user_id], function(err, results){
+      if(err){
+        console.log(err);
+        res.status(500).send();
+      } else {
+        var uinfo = results[0];
+        console.log(JSON.stringify(uinfo));
+        if(!uinfo) {
+          res.send(true);
+        }else {
+          res.send(false);
+        }
+
+      }
+    });
+  });
+
+
   route.post('/minfo_update', function(req, res){
-    console.log(req.body.region1, req.body.region2, req.body.password);
-    console.log(req.body.sex, req.body.age, req.body.home_mem_gbn);
+    //console.log(req.body.region1, req.body.region2, req.body.password);
+    //console.log(req.body.sex, req.body.age, req.body.home_mem_gbn);
     hasher({password:req.body.password}, function(err, pass, salt, hash){
 
       var user_id = req.body.username;

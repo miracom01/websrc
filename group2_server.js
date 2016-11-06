@@ -122,7 +122,8 @@ app.get('/main',function(req,res){
            "displayUserName" : req.session.user_name,
            "deviceInfo": results,
            "applianceInfo":applianceInfo,
-           "myAPSNInfo": myAPSNInfo
+           "myAPSNInfo": myAPSNInfo,
+           "nPos": 0
        });
     }
   });

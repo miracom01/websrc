@@ -1,7 +1,6 @@
 <div class="jumbotron" style="height: 100px; padding-top: 0px; padding-bottom: 0px;">
   <div class="container text-center">
     <h2><font color="#33cc33"><strong>H</strong></font>ome <font color="#33cc33"><strong>S</strong></font>mart <font color="#33cc33"><strong>G</strong></font>rid <font color="#33cc33"><strong>C</strong></font>ontrol <font color="#33cc33"><strong>D</strong></font>evices...</h2>
-    <p>bla bla~~</p>
   </div>
 </div>
 
@@ -17,10 +16,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/main">Home</a></li>
-        <li><a href="/members/minfo_detail">Member</a></li>
-        <li><a href="/ap_ep/ApEpManagement">AP / EP</a></li>
-        <li><a href="/ap_ep/ApEpStatistics">Statistics</a></li>
+        <li <% if(nPos == 0) {%>class="active" style="color:ff00ff"<%} %>><a href="/main" >Home</a></li>
+        <li <% if(nPos == 1) {%>class="active" style="color:ff00ff"<%} %>><a href="/members/minfo_detail" >Member</a></li>
+        <li <% if(nPos == 2) {%>class="active" style="color:ff00ff"<%} %>><a href="/ap_ep/ApEpManagement" >AP / EP</a></li>
+        <li <% if(nPos == 3) {%>class="active" style="color:ff00ff"<%} %>><a href="/ap_ep/ApEpStatistics" >Statistics</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> <%= displayUserName %> (<%= userId %>)</a></li>
