@@ -77,7 +77,7 @@ function mainReflash(){
       // $(item).find('[id="thisMonthAmountUsed"]').html()
       // //전월 사용량
       // $(item).find('[id="lastMonthAmountUsed"]').html()
-      console.log(EqSN +": " + $(item).find('[id="dailyUsed"]').html() +"/"+$(item).find('[id="thisMonthAmountUsed"]').html()+"/"+$(item).find('[id="lastMonthAmountUsed"]').html());
+      // console.log(EqSN +": " + $(item).find('[id="dailyUsed"]').html() +"/"+$(item).find('[id="thisMonthAmountUsed"]').html()+"/"+$(item).find('[id="lastMonthAmountUsed"]').html());
 
       //일일 사용량
       // var eq_no = req.query.eq_no;
