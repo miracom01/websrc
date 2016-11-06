@@ -1,66 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="../Scripts/ApEpManagement.js"></script>
-  <style>
-    /* Remove the navbar's default rounded borders and increase the bottom margin */
-    .navbar {
-      margin-bottom: 10px;
-      border-radius: 0;
-    }
+<% include header.ejs %>
+<script src="../Scripts/ApEpManagement.js"></script>
+<style>
+  /* Remove the navbar's default rounded borders and increase the bottom margin */
+  .navbar {
+    margin-bottom: 10px;
+    border-radius: 0;
+  }
 
-    /* Remove the jumbotron's default bottom margin */
-     .jumbotron {
-      margin-bottom: 0;
-      height: 200px;
-    }
+  /* Remove the jumbotron's default bottom margin */
+   .jumbotron {
+    margin-bottom: 0;
+    height: 200px;
+  }
 
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 15px;
-    }
-  </style>
-</head>
+  /* Add a gray background color and some padding to the footer */
+  footer {
+    background-color: #f2f2f2;
+    padding: 15px;
+  }
+</style>
 <body>
 
-  <div class="jumbotron">
-    <div class="container text-center">
-      <h2><font color="#33cc33"><strong>H</strong></font>ome <font color="#33cc33"><strong>S</strong></font>mart <font color="#33cc33"><strong>G</strong></font>rid <font color="#33cc33"><strong>C</strong></font>ontrol <font color="#33cc33"><strong>D</strong></font>evices...</h2>
-      <p>bla bla~~</p>
+<div class="jumbotron" style="height: 100px; padding-top: 0px; padding-bottom: 0px;">
+  <div class="container text-center">
+    <h2><font color="#33cc33"><strong>H</strong></font>ome <font color="#33cc33"><strong>S</strong></font>mart <font color="#33cc33"><strong>G</strong></font>rid <font color="#33cc33"><strong>C</strong></font>ontrol <font color="#33cc33"><strong>D</strong></font>evices...</h2>
+    <p>bla bla~~</p>
+  </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/main">Home</a></li>
+        <li><a href="/members/minfo_detail">Member</a></li>
+        <li><a href="/ap_ep/ApEpManagement">AP / EP</a></li>
+        <li><a href="/ap_ep/ApEpStatistics">Statistics</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> <%= displayUserName %> (<%= userId %>)</a></li>
+        <li><a href="/auth/logout"><span class="glyphicon glyphicon-shopping-cart"></span> LogOut</a></li>
+      </ul>
     </div>
   </div>
-
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Logo</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/main">Home</a></li>
-          <li><a href="/members/minfo_detail">Member</a></li>
-          <li><a href="/ap_ep/ApEpManagement">AP / EP</a></li>
-          <li><a href="/ap_ep/ApEpStatistics">Statistics</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> <%= displayUserName %> (<%= userId %>)</a></li>
-          <li><a href="/auth/logout"><span class="glyphicon glyphicon-shopping-cart"></span> LogOut</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+</nav>
 
 
 <!-- 본문 시작 -->

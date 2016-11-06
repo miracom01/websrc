@@ -106,7 +106,12 @@ module.exports = function(app) {
         res.status(500).end();
       } else {
         var minfo = results[0];
-        res.render('members/minfo_detail',{minfo:minfo});
+        res.render('members/minfo_detail',
+          {
+            minfo: minfo,
+            userId: req.session.user_id,
+            displayUserName : req.session.user_name
+          });
       }
     });
   });
