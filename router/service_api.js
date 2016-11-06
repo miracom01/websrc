@@ -127,5 +127,49 @@ module.exports = function(app) {
     });
   });
 
+  //7) EP별 해당일의 전력사용량 합 조회 (Web)
+  route.get('/getElectricSumForDay',function(req,res) {
+    var eq_no = req.query.eq_no;
+    var yyyymmdd = req.query.yyyymmdd;
+    //console.log(eq_no,yyyymm);
+    var sql = `
+      SELECT EQ_NO, M_YYYYMMDD , SUM(M_VALUE) AS SUM_VALUE
+      FROM TB_EQ_VOLT_MEASURE
+      WHERE EQ_NO = ? AND M_YYYYMMDD = ?
+      GROUP BY EQ_NO, M_YYYYMMDD `;
+    conn.query(sql, [eq_no, yyyymmdd], function(err, results){
+      if(err){
+        console.log(err);
+        res.send({'result': false, 'errCode': err.errCode});
+      }else{
+        console.log(JSON.stringify(results));
+        res.send(results);
+      }
+    });
+  });
+
+  //8) 유저별 해당월의 전력사용량 합 조회 (Web)
+  route.get('/getElectricSumOnUser',function(req,res) {
+    var user_id = (req.query.user_id!=''?req.query.user_id:req.session.user_id);
+    var yyyymm = req.query.yyyymm+'%';
+    //console.log(eq_no,yyyymm);
+    var sql = `
+      SELECT SUBSTR(M_YYYYMMDD,1,6) YYYYMM, SUM(M_VALUE) AS SUM_VALUE
+      FROM TB_EQ_VOLT_MEASURE
+      WHERE EQ_NO IN (select EQ_NO from TB_EQUIP_MASTER
+      where eq_user_id = ? and eq_gbn = 'EP') AND M_YYYYMMDD LIKE ?
+      GROUP BY SUBSTR(M_YYYYMMDD,1,6)`;
+    conn.query(sql, [user_id, yyyymm], function(err, results){
+      if(err){
+        console.log(err);
+        res.send({'result': false, 'errCode': err.errCode});
+      }else{
+        console.log(JSON.stringify(results));
+        res.send(results);
+      }
+    });
+  });
+
+
   return route;
 };
