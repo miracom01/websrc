@@ -59,6 +59,7 @@ module.exports = function() {
   route.get('/logout', function(req, res){
     console.log("logout finished : "+req.session.user_id);
     delete req.session.user_id;
+    delete req.session.user_name;
     req.session.save(function(){
        res.send('you have been log-out successfully..... <a href="/auth/login">login</a>');
     });
