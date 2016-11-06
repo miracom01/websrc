@@ -32,13 +32,13 @@ $(document).ready(function(){
         }
       });
     });
-}); 
+});
 
 function callStatus(){
   $('button[name="btn_on"]').each(function(index,item){
     var EqSN = item.id.split('^')[1];
 
-    if(EqSN.indexof('AP')<0){
+    if(EqSN.indexOf('AP')<0){
       $.ajax({
         url:'/sapi/getSignalOfControl',
         type:'GET',
