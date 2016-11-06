@@ -60,7 +60,7 @@ module.exports = function(app) {
     });
   });
 
-  //3) EP 장비 제어 신호 확인
+  //4) EP 장비 제어 신호 생성(Mobile)
   route.get('/saveSignalOfControl',function(req,res) {
     var signalInfo = {
       eq_no: req.query.eq_no,
@@ -78,7 +78,6 @@ module.exports = function(app) {
         console.log(JSON.stringify(results));
         res.send(results);
       }
-
     });
   });
 
