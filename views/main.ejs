@@ -118,7 +118,7 @@
  %>
 
 <div  class="col-sm-3 col-md-3 col-lg-3" >
-  <div class="panel panel-primary">
+  <div <% if(device.TGT_APPLIANCE_NAME_KOR =='AP'){ %> class="panel panel-primary" <% }else{%>  class="panel panel-primary" <% } %> >
     <div class="panel-heading table-responsive" style="padding:5px 5px 5px 10px">
       <table style="width:100%">
         <tr>
@@ -154,17 +154,17 @@
       </table>
       <br>
       <div class="panel panel-default" <% if(device.TGT_APPLIANCE_NAME_KOR =='AP'){ %> style="visibility: hidden;"<% } %> >
-        <div class="panel-heading">현재 사용량</div>
-        <div class="panel-body"><%=device.EQ_NO %></div>
+        <div class="panel-heading">일일 사용량</div>
+        <div class="panel-body" id="dailyUsed">Checking..</div>
       </div>
       <table class="table" <% if(device.TGT_APPLIANCE_NAME_KOR =='AP'){ %> style="visibility: hidden;"<% } %> >
         <tr>
-          <th>전원</th>
+          <th>전월</th>
           <th>당월</th>
         </tr>
         <tr>
-          <td>135</td>
-          <td>100</td>
+          <td id="thisMonthAmountUsed">135</td>
+          <td id="lastMonthAmountUsed">100</td>
         </tr>
       </table>
     </div>

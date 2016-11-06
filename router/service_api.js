@@ -127,5 +127,26 @@ module.exports = function(app) {
     });
   });
 
+  //7) EP별 해당일의 전력사용량 합 조회 (Mobile)
+  route.get('/getElectricSumForDay',function(req,res) {
+    var eq_no = req.query.eq_no;
+    var yyyymmdd = req.query.yyyymmdd;
+    //console.log(eq_no,yyyymm);
+    var sql = `
+      SELECT EQ_NO, M_YYYYMMDD , SUM(M_VALUE) AS SUM_VALUE
+      FROM TB_EQ_VOLT_MEASURE
+      WHERE EQ_NO = ? AND M_YYYYMMDD = ?
+      GROUP BY EQ_NO, M_YYYYMMDD `;
+    conn.query(sql, [eq_no, yyyymmdd], function(err, results){
+      if(err){
+        console.log(err);
+        res.send({'result': false, 'errCode': err.errCode});
+      }else{
+        console.log(JSON.stringify(results));
+        res.send(results);
+      }
+    });
+  });
+
   return route;
 };

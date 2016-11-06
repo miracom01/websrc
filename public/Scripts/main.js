@@ -2,8 +2,8 @@
 
 $(document).ready(function(){
 
-   var buttonInterval = setInterval(function(){ callStatus();}, 3000);
-  // var mainInterval = setInterval(function(){ mainReflash();}, 5000);
+   var buttonInterval = setInterval(function(){ callStatus();}, 5000);
+   var mainInterval = setInterval(function(){ mainReflash();}, 3000);
 
   $('button[name="btn_on"]').on('click',function(){
     var $btn = $(this).button('loading');
@@ -15,13 +15,13 @@ $(document).ready(function(){
 
     var EqSN =  $(this).prop('id').split('^')[1];
     var nowdate = new Date();
-    var yyymmdd = ""+nowdate.getFullYear()+(nowdate.getMonth()+1)+ lpad(nowdate.getDate().toString(),2,'0');
+    var yyyymmdd = ""+nowdate.getFullYear()+lpad((nowdate.getMonth()+1),2,'0')+ lpad(nowdate.getDate().toString(),2,'0');
     var hhmmss = "" + lpad(nowdate.getHours().toString(),2,'0') + lpad(nowdate.getMinutes().toString(),2,'0') + lpad(nowdate.getSeconds().toString(),2,'0');
 
      $.ajax({
        url:'/sapi/executeDeviceOnOff',
        type:'GET',
-        data:{eq_no:EqSN,c_yyyymmdd:yyymmdd,c_hhmiss:hhmmss,c_signal:signal},
+        data:{eq_no:EqSN,c_yyyymmdd:yyyymmdd,c_hhmiss:hhmmss,c_signal:signal},
         success:function(data){
           if(data.affectedRows>0){
               $btn.button('reset');
@@ -61,7 +61,70 @@ function callStatus(){
 }
 
 function mainReflash(){
+  $('div[name="myCard"]').each(function(index,item){
+    var EqSN = item.id.split('^')[1];
+    var nowdate = new Date();
+    var yyyymm = ""+nowdate.getFullYear()+lpad((nowdate.getMonth()+1),2,'0');
+    var yyyymmdd = ""+nowdate.getFullYear()+lpad((nowdate.getMonth()+1),2,'0')+ lpad(nowdate.getDate().toString(),2,'0');
+    var lastmonth = ""+nowdate.getFullYear()+lpad((nowdate.getMonth()),2,'0');
 
+
+    if(EqSN.indexOf('AP')<0){
+      // //일일 사용량
+      // $(item).find('[id="dailyUsed"]').html()
+      // //당월 사용량
+      // $(item).find('[id="thisMonthAmountUsed"]').html()
+      // //전월 사용량
+      // $(item).find('[id="lastMonthAmountUsed"]').html()
+      console.log(EqSN +": " + $(item).find('[id="dailyUsed"]').html() +"/"+$(item).find('[id="thisMonthAmountUsed"]').html()+"/"+$(item).find('[id="lastMonthAmountUsed"]').html());
+
+      //일일 사용량
+      // var eq_no = req.query.eq_no;
+      // var yyyymm = req.query.yyyymm+'%';
+      $.ajax({
+        url:'/sapi/getElectricSumForDay',
+        type:'GET',
+         data:{eq_no:EqSN,yyyymmdd:yyyymmdd},
+         success:function(data){
+           if(data.length>0){
+              $(item).find('[id="dailyUsed"]').html(data[0].SUM_VALUE);
+           }else{
+              $(item).find('[id="dailyUsed"]').html('checking...');
+           }
+         }
+       });
+
+       //당월 사용량
+       $.ajax({
+         url:'/sapi/getElectricSumForMonth',
+         type:'GET',
+          data:{eq_no:EqSN,yyyymm:yyyymm},
+          success:function(data){
+            if(data.length>0){
+               $(item).find('[id="thisMonthAmountUsed"]').html(data[0].SUM_VALUE);
+            }else{
+               $(item).find('[id="thisMonthAmountUsed"]').html('checking...');
+            }
+          }
+        });
+
+        //전월 사용량
+        $.ajax({
+          url:'/sapi/getElectricSumForMonth',
+          type:'GET',
+           data:{eq_no:EqSN,yyyymm:lastmonth},
+           success:function(data){
+             if(data.length>0){
+                $(item).find('[id="lastMonthAmountUsed"]').html(data[0].SUM_VALUE);
+             }else{
+                $(item).find('[id="lastMonthAmountUsed"]').html('checking...');
+             }
+           }
+         });
+
+
+    }
+  });
 }
 
 function lpad(originalstr, length, strToPad) {
