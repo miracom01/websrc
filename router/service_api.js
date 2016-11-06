@@ -48,7 +48,7 @@ module.exports = function(app) {
   //3) EP 장비 제어 신호 확인(IoT)
   route.get('/getSignalOfControl',function(req,res) {
     var eq_no = req.query.eq_no;
-    var sql = "SELECT * FROM TB_EQ_CTRL_SIGNAL WHERE EQ_NO = ? AND FIN_YN = 'Y'";
+    var sql = "SELECT EQ_NO, C_YYYYMMDD, C_HHMISS, C_SIGNAL FROM TB_EQ_CTRL_SIGNAL WHERE EQ_NO = ? AND FIN_YN = 'Y'";
     conn.query(sql, [eq_no], function(err, results){
       if(err){
         console.log(err);
