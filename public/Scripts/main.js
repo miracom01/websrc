@@ -87,7 +87,7 @@ function mainReflash(){
          data:{eq_no:EqSN,yyyymmdd:yyyymmdd},
          success:function(data){
            if(data.length>0){
-              $(item).find('[id="dailyUsed"]').html(data[0].SUM_VALUE);
+              $(item).find('[id="dailyUsed"]').html(data[0].SUM_VALUE.toFixed(2));
            }else{
               $(item).find('[id="dailyUsed"]').html('checking...');
            }
@@ -101,7 +101,7 @@ function mainReflash(){
           data:{eq_no:EqSN,yyyymm:yyyymm},
           success:function(data){
             if(data.length>0){
-               $(item).find('[id="thisMonthAmountUsed"]').html(data[0].SUM_VALUE);
+               $(item).find('[id="thisMonthAmountUsed"]').html(data[0].SUM_VALUE.toFixed(2));
             }else{
                $(item).find('[id="thisMonthAmountUsed"]').html('checking...');
             }
@@ -115,7 +115,7 @@ function mainReflash(){
            data:{eq_no:EqSN,yyyymm:lastmonth},
            success:function(data){
              if(data.length>0){
-                $(item).find('[id="lastMonthAmountUsed"]').html(data[0].SUM_VALUE);
+                $(item).find('[id="lastMonthAmountUsed"]').html(data[0].SUM_VALUE.toFixed(2));
              }else{
                 $(item).find('[id="lastMonthAmountUsed"]').html('checking...');
              }
