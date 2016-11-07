@@ -103,6 +103,7 @@ function mainReflash(){
           success:function(data){
             if(data.length>0){
                $(item).find('[id="thisMonthAmountUsed"]').html(data[0].SUM_VALUE.toFixed(2));
+
             }else{
                $(item).find('[id="thisMonthAmountUsed"]').html('Checking..');
             }
@@ -131,6 +132,7 @@ function mainReflash(){
             success:function(data){
               if(data.length>0){
                  $('#thisMonth_progress').html(data[0].SUM_VALUE.toFixed(2));
+                 $('#estimatedAmount').html("<strong> 약 " + number_format(calcDstimatedAmount(data[0].SUM_VALUE.toFixed(2)).toFixed(0)) + " 원 </strong>");
               }else{
                  $('#thisMonth_progress').html('Checking..');
               }
@@ -160,4 +162,133 @@ function lpad(originalstr, length, strToPad) {
     while (originalstr.length < length)
         originalstr = strToPad + originalstr;
     return originalstr;
+}
+
+function number_format( number )
+{
+  var nArr = String(number).split('').join(',').split('');
+  for( var i=nArr.length-1, j=1; i>=0; i--, j++)  if( j%6 != 0 && j%2 == 0) nArr[i] = '';
+  return nArr.join('');
+}
+
+function calcDstimatedAmount(sum){
+    var basicPay=0;
+    var electricPay=0;
+    var plus=0;
+    if(sum>=1 && sum<=100){
+        basicPay=410;
+        electricPay = sum * 60.7;
+    }else if(sum>=101 && sum<=200){
+        basicPay=910;
+        var count=0;
+        while(sum>=100){
+            count++;
+            sum = sum-100;
+            if(count==1){
+                plus=60.7;
+            }else if(count==2){
+                plus=125.9;
+            }else if(count==3){
+                plus=187.9;
+            }else if(count==4){
+                plus=280.6;
+            }else if(count==5){
+                plus=417.7;
+            }else if(count>=6){
+                plus=709.5;
+            }
+            electricPay += 100 *plus;
+        }
+        electricPay += sum*plus;
+
+    }else if(sum>=201 && sum<=300){
+        basicPay=1600;
+        var count=0;
+        while(sum>=100){
+            count++;
+            sum = sum-100;
+            if(count==1){
+                plus=60.7;
+            }else if(count==2){
+                plus=125.9;
+            }else if(count==3){
+                plus=187.9;
+            }else if(count==4){
+                plus=280.6;
+            }else if(count==5){
+                plus=417.7;
+            }else if(count>=6){
+                plus=709.5;
+            }
+            electricPay += 100 *plus;
+        }
+        electricPay += sum*plus;
+    }else if(sum>=301 && sum<=400){
+        basicPay=3850;
+        var count=0;
+        while(sum>=100){
+            count++;
+            sum = sum-100;
+            if(count==1){
+                plus=60.7;
+            }else if(count==2){
+                plus=125.9;
+            }else if(count==3){
+                plus=187.9;
+            }else if(count==4){
+                plus=280.6;
+            }else if(count==5){
+                plus=417.7;
+            }else if(count>=6){
+                plus=709.5;
+            }
+            electricPay += 100 *plus;
+        }
+        electricPay += sum*plus;
+    }else if(sum>=401 && sum<=500){
+        basicPay=7300;
+        var count=0;
+        while(sum>=100){
+            count++;
+            sum = sum-100;
+            if(count==1){
+                plus=60.7;
+            }else if(count==2){
+                plus=125.9;
+            }else if(count==3){
+                plus=187.9;
+            }else if(count==4){
+                plus=280.6;
+            }else if(count==5){
+                plus=417.7;
+            }else if(count>=6){
+                plus=709.5;
+            }
+            electricPay += 100 *plus;
+        }
+        electricPay += sum*plus;
+    }else if(sum>=501){
+        basicPay=12940;
+        var count=0;
+        while(sum>=100){
+            count++;
+            sum = sum-100;
+            if(count==1){
+                plus=60.7;
+            }else if(count==2){
+                plus=125.9;
+            }else if(count==3){
+                plus=187.9;
+            }else if(count==4){
+                plus=280.6;
+            }else if(count==5){
+                plus=417.7;
+            }else if(count>=6){
+                plus=709.5;
+            }
+            electricPay += 100 *plus;
+        }
+        electricPay += sum*plus;
+    }
+    return basicPay + electricPay;
 }
