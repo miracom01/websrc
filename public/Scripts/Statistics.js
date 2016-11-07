@@ -26,17 +26,22 @@ $(document).ready(function(){
   Morris.Area({
   element: 'area-example',
   data: [
-    { y: '2006', a: 100, b: 90 },
-    { y: '2007', a: 75,  b: 65 },
-    { y: '2008', a: 50,  b: 40 },
-    { y: '2009', a: 75,  b: 65 },
-    { y: '2010', a: 50,  b: 40 },
-    { y: '2011', a: 75,  b: 65 },
-    { y: '2012', a: 100, b: 90 }
+    { month: '1월', a: 100, b: 90 },
+    { month: '2월', a: 75,  b: 65 },
+    { month: '3월', a: 50,  b: 40 },
+    { month: '4월', a: 75,  b: 65 },
+    { month: '6월', a: 75,  b: 65 },
+    { month: '5월', a: 50,  b: 40 },
+    { month: '7월', a: 100, b: 90 },
+    { month: '8월', a: 100, b: 90 },
+    { month: '9월', a: 75,  b: 65 },
+    { month: '10월', a: 50,  b: 40 },
+    { month: '11월', a: 75,  b: 65 },
+    { month: '12월', a: 50,  b: 40 }
   ],
-  xkey: 'y',
+  xkey: 'month',
   ykeys: ['a', 'b'],
-  labels: ['Series A', 'Series B']
+  labels: ['2016', '2015']
 });
 
 
