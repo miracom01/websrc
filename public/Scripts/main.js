@@ -40,7 +40,7 @@ function callStatus(){
 
     if(EqSN.indexOf('AP')<0){
       $.ajax({
-        url:'/sapi/getSignalOfControl',
+        url:'/sapi/getSignalOfControl2',
         type:'GET',
          data:{eq_no:EqSN},
          success:function(data){
