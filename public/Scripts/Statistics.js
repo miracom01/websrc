@@ -1,15 +1,17 @@
 $(document).ready(function(){
-  new Morris.Line({
+
+
+
+  Morris.Line({
     // ID of the element in which to draw the chart.
     element: 'myfirstchart',
     // Chart data records -- each entry in this array corresponds to a point on
     // the chart.
     data: [
-      { year: '2008', value: 20 },
-      { year: '2009', value: 10 },
-      { year: '2010', value: 5 },
-      { year: '2011', value: 5 },
-      { year: '2012', value: 20 }
+      { year: '2013', value: 20 },
+      { year: '2014', value: 10 },
+      { year: '2015', value: 20 },
+      { year: '2016', value: 10 }
     ],
     // The name of the data record attribute that contains x-values.
     xkey: 'year',
@@ -19,6 +21,7 @@ $(document).ready(function(){
     // chart.
     labels: ['Value']
   });
+
 
   Morris.Area({
   element: 'area-example',
@@ -56,13 +59,22 @@ $(document).ready(function(){
   Morris.Donut({
     element: 'donut-example',
     data: [
-      {label: "Download Sales", value: 12},
-      {label: "In-Store Sales", value: 30},
-      {label: "Mail-Order Sales", value: 20}
+      {label: "선풍기", value: 4},
+      {label: "형광등", value: 7},
+      {label: "온열기", value: 8},
+      {label: "전자레인지", value: 12}
     ]
   });
 
 
+
+Morris.Donut({
+  element: 'donut-example2',
+  data: [
+    {label: "female", value: 70},
+    {label: "male", value: 30},
+  ]
+});
 
 
 

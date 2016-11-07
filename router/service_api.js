@@ -64,6 +64,25 @@ module.exports = function(app) {
     });
   });
 
+  //3-1) EP 처리되지 않은 신호 리스트 반환
+  route.get('/getProcessWatingList',function(req,res) {
+    var eq_no = req.query.eq_no;
+    var sql = `
+      SELECT EQ_NO, C_YYYYMMDD, C_HHMISS, C_SIGNAL
+      FROM TB_EQ_CTRL_SIGNAL WHERE EQ_NO = ? AND FIN_YN = 'N'
+      ORDER BY C_YYYYMMDD DESC, C_HHMISS DESC`;
+
+    conn.query(sql, [eq_no], function(err, results){
+      if(err){
+        console.log(err);
+        res.send({'result': false, 'errCode': err.code});
+      }else {
+        console.log(JSON.stringify(results));
+        res.send(results);
+      }
+    });
+  });
+
   //4) EP 장비 제어 신호 생성(Mobile)
   route.get('/executeDeviceOnOff',function(req,res) {
     var signalInfo = {

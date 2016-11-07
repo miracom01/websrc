@@ -1,20 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <% include ../common.ejs %>
+<link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="../Scripts/Statistics.js"></script>
-
 <body>
 <% include ../header.ejs %>
 <!-- 본문 시작 -->
 <div class="container" style="width: 100%;">
-  <div id="myfirstchart" style="height: 250px;"></div>
-   <div id="area-example"></div>
-  <div id="bar-example"></div>
-    <div id="donut-example"></div>
+
+<div class="row" style="width: 100%;">
+  <div  class="col-sm-6 col-md-6 col-lg-6">
+    <div class="panel panel-primary" style="border-color: #333;" >
+      <div class="panel-heading table-responsive" style="padding:5px 5px 5px 10px; background-color: #333;">
+        <table style="width:100%">
+          <tr style="height: 30px;">
+            <td width="*" style="align:left;"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> &nbsp;&nbsp;용도별 사용량</td>
+          </tr>
+        </table>
+      </div>
+        <div class="panel-body table-responsive">
+          <table style="width:100%">
+            <tr>
+              <td style="width:100%; align:center;">
+                 <div id="bar-example"></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>
+  </div>
+
+
+  <div  class="col-sm-6 col-md-6 col-lg-6">
+    <div class="panel panel-primary" style="border-color: #333;" >
+      <div class="panel-heading table-responsive" style="padding:5px 5px 5px 10px; background-color: #333;">
+        <table style="width:100%">
+          <tr style="height: 30px;">
+            <td width="*" style="align:left;"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> &nbsp;&nbsp;용도별 사용량</td>
+          </tr>
+        </table>
+      </div>
+        <div class="panel-body table-responsive">
+          <table style="width:100%">
+            <tr>
+              <td style="width:100%; align:center;">
+                 <div id="area-example"></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="row" style="width: 100%;">
+  <div  class="col-sm-6 col-md-6 col-lg-6">
+    <div class="panel panel-primary" style="border-color: #333;" >
+      <div class="panel-heading table-responsive" style="padding:5px 5px 5px 10px; background-color: #333;">
+        <table style="width:100%">
+          <tr style="height: 30px;">
+            <td width="*" style="align:left;"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> &nbsp;&nbsp;등록 장비 수</td>
+          </tr>
+        </table>
+      </div>
+        <div class="panel-body table-responsive">
+          <table style="width:100%">
+            <tr>
+              <td style="width:100%; align:center;">
+                   <div id="myfirstchart"></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>
+  </div>
+
+
+  <div  class="col-sm-3 col-md-3 col-lg-3">
+    <div class="panel panel-primary" style="border-color: #333;" >
+      <div class="panel-heading table-responsive" style="padding:5px 5px 5px 10px; background-color: #333;">
+        <table style="width:100%">
+          <tr style="height: 30px;">
+            <td width="*" style="align:left;"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> &nbsp;&nbsp;등록 장비 수</td>
+          </tr>
+        </table>
+      </div>
+        <div class="panel-body table-responsive">
+          <table style="width:100%">
+            <tr>
+              <td style="width:100%; align:center;">
+                <div id="donut-example"></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>
+  </div>
+  <div  class="col-sm-3 col-md-3 col-lg-3">
+    <div class="panel panel-primary" style="border-color: #333;" >
+      <div class="panel-heading table-responsive" style="padding:5px 5px 5px 10px; background-color: #333;">
+        <table style="width:100%">
+          <tr style="height: 30px;">
+            <td width="*" style="align:left;"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> &nbsp;&nbsp;가입자 성비 (%)</td>
+          </tr>
+        </table>
+      </div>
+        <div class="panel-body table-responsive">
+          <table style="width:100%">
+            <tr>
+              <td style="width:100%; align:center;">
+                <div id="donut-example2"></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 </div>
 
 <footer class="container-fluid text-center">
